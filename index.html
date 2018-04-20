@@ -253,7 +253,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/uncategorized/leetcode-10/">
+    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/uncategorized/POJ-1062/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="OrangeLuYao">
@@ -272,7 +272,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/src/uncategorized/leetcode-10/" itemprop="url">leetcode-10</a></h1>
+                <a class="post-title-link" href="/src/uncategorized/POJ-1062/" itemprop="url">POJ-1062</a></h1>
         
 
         <div class="post-meta">
@@ -284,8 +284,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-18T20:36:34+08:00">
-                2018-04-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-20T17:23:16+08:00">
+                2018-04-20
               </time>
             
 
@@ -321,13 +321,11 @@
       
         
           
-            <h1 id="leetcode-10-题解"><a href="#leetcode-10-题解" class="headerlink" title="leetcode-10 题解"></a>leetcode-10 题解</h1><p>题目意思很简单，正则表达式匹配一个字符串，注意这个<em>表示前面这个字符串的闭包<br>思想很好理解，就是如果有</em> 就从所有可能位置向下递归即可，有下面几个注意点：</p>
-<ol>
-<li>注意到要判断模式串结束的时候文本串是否结束，原因是a*可以表示空串</li>
-<li>注意到通过判断第二个字符串是否为*来判断是直接向下</li>
-</ol>
-<p>代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isAccept</span><span class="params">(<span class="built_in">string</span> s,<span class="built_in">string</span> p,<span class="keyword">int</span> ss,<span class="keyword">int</span> pp)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(pp &gt;= p.length() ) <span class="keyword">return</span> ss == s.length();</div><div class="line">        <span class="keyword">if</span>(p[pp+<span class="number">1</span>] == <span class="string">'*'</span>)&#123;</div><div class="line">            <span class="keyword">while</span>(ss &lt; s.length() &amp;&amp; (s[ss] == p[pp] || p[pp] == <span class="string">'.'</span>)) &#123;</div><div class="line">                <span class="keyword">if</span>(isAccept(s,p,ss,pp+<span class="number">2</span>)) <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">                ss ++;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> isAccept(s,p,ss,pp+<span class="number">2</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">if</span>(p[pp] == <span class="string">'.'</span>) <span class="keyword">return</span> isAccept(s,p,ss+<span class="number">1</span>,pp+<span class="number">1</span>);</div><div class="line">            <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">if</span>(s[ss] != p[pp]) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">                <span class="keyword">else</span> <span class="keyword">return</span> isAccept(s,p,ss+<span class="number">1</span>,pp+<span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isMatch</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> p)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> isAccept(s,p,<span class="number">0</span>,<span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
-
+            <h1 id="最短路变形"><a href="#最短路变形" class="headerlink" title="最短路变形"></a>最短路变形</h1><blockquote>
+<p>POJ 1062</p>
+</blockquote>
+<p>还是比较好想的，注意权限控制以及每次开始dijkstra的时候对于等级然后进行一次权限控制。实际上有一个超级源点，价格是所有点的初始price，然后枚举从那<br>个点进入图就可以了。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line">    每个点有一个价格和相应的转化方法，转化有权限等级限制，求最少的钱数可以取到节点1上面的货物</div><div class="line">    解释见注释</div><div class="line">*/</div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">int</span> m,n;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">110</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF = <span class="number">0x3f3f3f3f</span>;</div><div class="line"><span class="keyword">int</span> price[MAXN];</div><div class="line"><span class="keyword">int</span> level[MAXN];</div><div class="line"><span class="keyword">int</span> mp[MAXN][MAXN];</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;<span class="comment">//套路</span></div><div class="line">    <span class="built_in">memset</span>(price,<span class="number">0</span>,<span class="keyword">sizeof</span> price);</div><div class="line">    <span class="built_in">memset</span>(level,<span class="number">0</span>,<span class="keyword">sizeof</span> level);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>;j&lt;=n;j++)&#123;</div><div class="line">            mp[i][j] = INF;</div><div class="line">        &#125;</div><div class="line">        mp[i][i] = <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">int</span> dist[MAXN];</div><div class="line"><span class="keyword">bool</span> vis[MAXN];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">dijkstra</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">        dist[i] = price[i];<span class="comment">//从超级源点进入</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">1</span>;k&lt;n;k++)&#123;   </div><div class="line">        <span class="keyword">int</span> dv = <span class="number">-1</span>;</div><div class="line">        <span class="keyword">int</span> ds = INF;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">            <span class="keyword">if</span>(!vis[i] &amp;&amp; ds &gt; dist[i])&#123;</div><div class="line">                ds = dist[i];</div><div class="line">                dv = i;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(dv == <span class="number">-1</span>) <span class="keyword">break</span>;</div><div class="line">        vis[dv] = <span class="literal">true</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">            <span class="keyword">if</span>(!vis[i] &amp;&amp; dist[i] &gt; dist[dv] + mp[dv][i])&#123;</div><div class="line">                dist[i] = dist[dv] + mp[dv][i];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> dist[<span class="number">1</span>];<span class="comment">//到达1点的权值</span></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;m,&amp;n)!=EOF)&#123;</div><div class="line">        init();</div><div class="line">        <span class="keyword">int</span> d,to,cost;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">            <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;price[i],&amp;level[i],&amp;d);</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=d;j++)&#123;</div><div class="line">                <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;to,&amp;cost);</div><div class="line">                mp[to][i] = cost;<span class="comment">//建图</span></div><div class="line">            &#125;</div><div class="line">        &#125;       </div><div class="line">        <span class="keyword">int</span> ans = INF;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;<span class="comment">//枚举最高等级</span></div><div class="line">            <span class="keyword">int</span> lv = level[i];</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)&#123;<span class="comment">//确定权限，注意else是必须的，要把上一次的标记完全改回来。</span></div><div class="line">                <span class="keyword">if</span>(level[j] &gt; lv || <span class="built_in">abs</span>(level[j]-lv) &gt; m)&#123;</div><div class="line">                    vis[j] = <span class="literal">true</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">else</span>&#123;</div><div class="line">                    vis[j] = <span class="literal">false</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">int</span> tmp = dijkstra();</div><div class="line">            ans = min(ans,tmp);</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           
         
       
@@ -370,7 +368,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/uncategorized/Saltwater-room/">
+    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/uncategorized/POJ-3518/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="OrangeLuYao">
@@ -389,7 +387,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/src/uncategorized/Saltwater-room/" itemprop="url">Saltwater room</a></h1>
+                <a class="post-title-link" href="/src/uncategorized/POJ-3518/" itemprop="url">POJ-3518</a></h1>
         
 
         <div class="post-meta">
@@ -401,8 +399,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T02:24:52+08:00">
-                2018-01-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-20T17:21:32+08:00">
+                2018-04-20
               </time>
             
 
@@ -438,15 +436,8 @@
       
         
           
-            <p>$I\ opened\ my\ eyes\ last\ night\ and\ saw\ you\ in\ the\ low\ light$<br>$昨夜睁开双眼,看见你在那昏暗的灯光下$<br>$Walking\ down\ by\ the\ bay\ on\ the\ shore$<br>$沿着海湾走下去,凝视不断延伸的海平面$<br>$Staring\ up\ at\ the\ stars\ that\ aren’t\ there\ anymore$<br>$凝望着天空中早已远逝的星星$</p>
-<p>$I\ was\ feeling\ the\ night\ grow\ old\ and\ you\ were\ looking\ so\ cold$<br>$我感觉到夜的老去，而你那么冷淡$<br>$So\ like\ an\ introvert,\ I\ drew\ my\ over\ shirt$<br>$因此,我像一个内向的孩童$<br>$Around\ my\ arms\ and\ began\ to\ shiver\ violently\ before$<br>$挥动我的双臂,开始激烈地甩动我的衬衫$<br>$You\ happened\ to\ look\ and\ see\ the\ tunnels\ all\ around\ me$<br>$你无意地看见了环绕在我身边的隧道$<br>$Running\ into\ the\ dark\ underground$<br>$向着地底那无尽的黑暗延伸$<br>$All\ the\ subways\ around\ create\ a\ great\ sound$<br>$四周的地铁发出一种美妙的声音$</p>
-<p>$To\ my\ motion\ fatigue\ farewell$<br>$向疲惫的身心说再见$<br>$with\ your\ ear\ to\ a\ seashell$<br>$用你的耳朵贴紧海螺$<br>$You\ can\ hear\ the\ waves\ in\ underwater\ caves$<br>$就能听见深海洞穴里海浪的声音$<br>$As\ if\ you\ actually\ were\ inside\ a\ saltwater\ room$<br>$仿佛你真的置身于深海秘境一般$</p>
-<p>$Time\ together\ isn’t\ ever\ quite\ enough$<br>$相聚的时间总是觉得不够$<br>$When\ you\ and\ I\ are\ alone,\ I’ve\ never\ felt\ so\ at\ home$<br>$当你我都独自一人时,从来没有家的感觉$<br>$What\ will\ it\ take\ to\ make\ or\ break\ this\ hint\ of\ love?$<br>$我们要拿什么才能破解这爱情的密码呢？$<br>$Only\ time,\ only\ time$<br>$只有时间\ 只有时间$</p>
-<p>$Can\ you\ believe\ that\ the\ crew\ has\ gone?$<br>$你能相信那些船员已经远去$<br>$And\ they\ wouldn’t\ let\ me\ sign\ on$<br>$并没有让我上岸$<br>$All\ my\ islands\ have\ sunk\ in\ the\ deep$<br>$我已经泥足深陷,无法自拔了$<br>$And\ I\ can\ hardly\ relax\ or\ even\ oversleep$<br>$我几乎不能放松甚至失眠$<br>$But\ I\ feel\ warm\ with\ your\ hand\ in\ mine，when\ we\ walk\ along\ the\ shoreline$<br>$当我与你牵手漫步在海岸的时候,我能感受到你手心的温暖$<br>$I\ guess\ we’ll\ never\ know\ why\ sparrows\ love\ the\ snow$<br>$我猜我永远也不知道麻雀爱雪的理由$<br>$We’ll\ turn\ out\ all\ of\ the\ lights\ and\ set\ this\ ballroom\ aglow$<br>$我们关上所有灯,把这舞厅布置得一片通红$</p>
-<p>$So\ tell\ me\ darling,\ do\ you\ wish\ we’d\ fall\ in\ love?$<br>$告诉我\ 亲爱的\ 你希望和我相爱吗$<br>$Yeah,\ all\ the\ time,\ all\ the\ time$<br>$当然\ 一直都是\ 一直都是$</p>
-<p>$Time\ together\ isn’t\ ever\ quite\ enough$<br>$相聚的时间总是觉得不够$<br>$When\ you\ and\ I\ are\ alone,\ I’ve\ never\ felt\ so\ at\ home$<br>$当你我都独自一人时\ 从来没有家的感觉$<br>$What\ will\ it\ take\ to\ make\ or\ break\ this\ hint\ of\ love?$<br>$我们拿什么才能破解这爱情的密码呢？$<br>$Only\ time,\ only\ time$<br>$只有时间\ 只有时间$<br>$When\ we’re\ apart\ what\ ever\ are\ you\ thinking\ of?$<br>$当我们分开的时候你在想什么$<br>$If\ this\ is\ what\ I\ call\ home,\ why\ does\ it\ feel\ so\ alone?$<br>$如果这是我所谓的家,为什么感觉这么孤单$<br>$So\ tell\ me\ darling,\ do\ you\ wish\ we’d\ fall\ in\ love?$<br>$告诉我亲爱的,你希望和我们一起坠入爱河吗？$<br>$All\ the\ time,\ all\ the\ time$<br>$一直都是\ 生生世世$</p>
-<p>$Time\ together\ isn’t\ ever\ quite\ enough$<br>$相聚的时间总是觉得不够$<br>$When\ we’re\ apart\ what\ ever\ are\ you\ thinking\ of?$<br>$当我们分开的时候你在想什么$<br>$What\ will\ it\ take\ to\ make\ or\ break\ this\ hint\ of\ love?$<br>$我们拿什么才能破解这爱情的密码呢？$<br>$So\ tell\ me\ darling,\ do\ you\ wish\ we’d\ fall\ in\ love?$<br>$告诉我亲爱的,你希望和我们一起坠入爱河吗？$<br>$All\ the\ time,\ oh,\ all\ the\ time$<br>$一直都是\ 哦\ 生生世世$</p>
-
+            <h3 id="POJ-3518"><a href="#POJ-3518" class="headerlink" title="POJ 3518"></a>POJ 3518</h3><p>直接一个素数表二分就可以了</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line">    POJ 3518</div><div class="line">    素数表就可以过</div><div class="line">*/</div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXM = <span class="number">1299709</span> + <span class="number">10</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">1e5</span>+<span class="number">100</span>;</div><div class="line"><span class="keyword">int</span> prime[MAXM];</div><div class="line"><span class="keyword">bool</span> vis[MAXM];</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">linear_shaker</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>;i&lt;MAXM;i++)&#123;</div><div class="line">        <span class="keyword">if</span>(!prime[i]) &#123;</div><div class="line">            prime[++prime[<span class="number">0</span>]] = i;</div><div class="line">            vis[i] = <span class="literal">true</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>;j &lt;= prime[<span class="number">0</span>] &amp;&amp; prime[j] &lt;= MAXM / i;j++)&#123;</div><div class="line">            prime[i * prime[j]] = <span class="number">1</span>;</div><div class="line">            <span class="keyword">if</span>(i % prime[j] == <span class="number">0</span>) <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    linear_shaker();</div><div class="line">    <span class="keyword">int</span> n;</div><div class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n)!=EOF &amp;&amp; n)&#123;</div><div class="line">        <span class="keyword">if</span>(vis[n]) <span class="built_in">puts</span>(<span class="string">"0"</span>);</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">int</span> pos = lower_bound(prime+<span class="number">1</span>,prime+<span class="number">1</span>+prime[<span class="number">0</span>],n) - prime;</div><div class="line">            pos -- ;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,prime[pos+<span class="number">1</span>] - prime[pos]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           
         
       
@@ -489,7 +480,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/uncategorized/机器学习资料/">
+    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/uncategorized/LOJ-505/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="OrangeLuYao">
@@ -508,7 +499,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/src/uncategorized/机器学习资料/" itemprop="url">机器学习资料</a></h1>
+                <a class="post-title-link" href="/src/uncategorized/LOJ-505/" itemprop="url">LOJ-505</a></h1>
         
 
         <div class="post-meta">
@@ -520,8 +511,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-26T14:07:06+08:00">
-                2017-12-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-20T17:18:47+08:00">
+                2018-04-20
               </time>
             
 
@@ -557,434 +548,256 @@
       
         
           
-            <ol>
-<li>2017-12-26</li>
-</ol>
-<ul>
-<li><a href="http://blog.csdn.net/qq_27923041/article/details/54139887" target="_blank" rel="external">caffee训练过程</a></li>
-<li><a href="https://github.com/aimerykong/Low-Rank-Bilinear-Pooling" target="_blank" rel="external">Low-Rank-Bilinear-Pooling</a></li>
-<li><a href="https://www.cnblogs.com/zmshy2128/p/6180756.html" target="_blank" rel="external">gabor人脸识别</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/matlab/matlab/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="OrangeLuYao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orange小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/src/matlab/matlab/" itemprop="url">matlab</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T15:08:43+08:00">
-                2017-10-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/matlab/" itemprop="url" rel="index">
-                    <span itemprop="name">matlab</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="重要函数列举"><a href="#重要函数列举" class="headerlink" title="重要函数列举"></a>重要函数列举</h2><ol>
-<li>实部虚部<br><code>real(a)</code>和<code>imag(a)</code></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/计算机图形学/OpenGL-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="OrangeLuYao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orange小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/src/计算机图形学/OpenGL-1/" itemprop="url">OpenGL(1)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T22:06:45+08:00">
-                2017-10-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机图形学/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机图形学</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="OpenGL-1"><a href="#OpenGL-1" class="headerlink" title="OpenGL 1"></a>OpenGL 1</h1>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/ACM/后缀自动机/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="OrangeLuYao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orange小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/src/ACM/后缀自动机/" itemprop="url">后缀自动机</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-09T15:18:40+08:00">
-                2017-10-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ACM/" itemprop="url" rel="index">
-                    <span itemprop="name">ACM</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="SAM后缀自动机算法"><a href="#SAM后缀自动机算法" class="headerlink" title="SAM后缀自动机算法"></a>SAM后缀自动机算法</h1><h2 id="什么是自动机"><a href="#什么是自动机" class="headerlink" title="什么是自动机"></a>什么是自动机</h2><ul>
-<li>有限状态自动机的功能是识别字符串，令一个自动机A，若它能识别字符串S，就记为A(S)=True，否则A(S)=False。</li>
-<li>自动机由五个部分组成，alpha：字符集，state：状态集合，init：初始状态，end：结束状态集合，trans：状态转移函数。</li>
-<li>不妨令trans(s,ch)表示当前状态是s，在读入字符ch之后，所到达的状态。</li>
-<li>如果trans(s,ch)这个转移不存在，为了方便，不妨设其为null，同时null只能转移到null。</li>
-<li>null表示不存在的状态。</li>
-<li>同时令trans(s,str)表示当前状态是s，在读入字符串str之后，所到达的状态。</li>
-</ul>
-<p>这个是自动机的定义</p>
-<p>下面定义一些符号：</p>
-<ol>
-<li>那么自动机A能识别的字符串就是所有使得trans(init,x) </li>
-</ol>
+            <h2 id="网络流题"><a href="#网络流题" class="headerlink" title="网络流题"></a>网络流题</h2><p>LOJ 505</p>
 <blockquote>
-<p>鸣谢：</p>
-<ol>
-<li>CLJ的后缀自动机讲义</li>
-</ol>
+<p>题意很简单，n个人，每个人有个范围，一个初始体重，然后有m个球，每个球被人吃了之后会增加人的体重，然后现在人只能再范围内吃，只要一个球能被吃，就必须被吃<br>掉，现在有一个人（其中一个），可以安排所有人的行为，问是否能使得他是最大的体重<br>数据范围  1  ≤  n  ≤  100  ,  1  ≤  m  ≤  400</p>
+</blockquote>
+<p>显然不能搜索谁吃了啥<br>动态规划显然没法找到子问题<br>贪心?emmmm参见拟阵？笑:）</p>
+<p>所以要么是乱搞要么是网络流啊</p>
+<p>显然可以知道的是，人和球相连，权值为INF，球连出权值，这样最后人流出的就是增加的重量，所以现在的问题就是：<br>1. 如何解决初始重量<br>2. 如何解决最优化问题</p>
+<p>注意，我们现在指望一个人最重，我首先不谈别的，他肯定得把能吃的都吃了。剩下的人和球形成的总流量，必须得是总流量，并且每个人流出的那个流量，必须是小于最大流量</p>
+<ul>
+<li>初始</li>
+</ul>
+<p>然后，我们只要判断剩下的就行了</p>
+<p>（本来以为难题的，尴尬。。。<br>上代码吧(只有建图，最大流就套板子就行了)</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">inline int sqr(int x)&#123; <span class="keyword">return</span> x * x; &#125;</div><div class="line">int main()&#123;</div><div class="line">    int T;</div><div class="line">    scanf(<span class="string">"%d"</span>,&amp;T);</div><div class="line">    <span class="keyword">for</span>(int cas = <span class="number">1</span>;cas &lt;= T;cas ++)&#123;        </div><div class="line">        init();</div><div class="line">        scanf(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</div><div class="line">        <span class="keyword">for</span>(int i=<span class="number">1</span>;i&lt;=n;i++) &#123;</div><div class="line">            scanf(<span class="string">"%d%d%d%d"</span>,&amp;x[i],&amp;y[i],&amp;w[i],&amp;r[i]);</div><div class="line">        &#125;</div><div class="line">        src = <span class="number">0</span>,des = n + m + <span class="number">1</span>;</div><div class="line">        int sum = w[<span class="number">1</span>],rest = <span class="number">0</span>;</div><div class="line"></div><div class="line">        <span class="keyword">for</span>(int i=<span class="number">1</span>;i&lt;=m;i++)&#123;</div><div class="line">            scanf(<span class="string">"%d%d%d"</span>,&amp;xx[i],&amp;yy[i],&amp;ww[i]);</div><div class="line">            <span class="keyword">if</span>(sqr(x[<span class="number">1</span>] - xx[i]) + sqr(y[<span class="number">1</span>] - yy[i]) &lt;= sqr(r[<span class="number">1</span>])) &#123;</div><div class="line">                sum += ww[i];</div><div class="line">                <span class="keyword">continue</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">for</span>(int j=<span class="number">2</span>;j&lt;=n;j++)&#123;</div><div class="line">                <span class="keyword">if</span>(sqr(x[j] - xx[i]) + sqr(y[j] - yy[i]) &lt;= sqr(r[j]))&#123;</div><div class="line">                    <span class="keyword">if</span>(!vis[i]) rest += ww[i];</div><div class="line">                    vis[i] = true;</div><div class="line">                    AddEdge(i+n,j,INF);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span>(int i=<span class="number">1</span>;i&lt;=m;i++) <span class="keyword">if</span>(vis[i]) AddEdge(src,i+n,ww[i]);</div><div class="line">        bool flag = false;</div><div class="line">        <span class="keyword">for</span>(int i=<span class="number">2</span>;i&lt;=n;i++) <span class="keyword">if</span>(sum &lt; w[i]) &#123;</div><div class="line">            flag = true;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(flag) &#123;</div><div class="line">            puts(<span class="string">"qaq"</span>);</div><div class="line">            <span class="keyword">continue</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span>(int i=<span class="number">2</span>;i&lt;=n;i++) AddEdge(i,des,sum - w[i]);</div><div class="line">        int maxflow = Dinic(src,des);</div><div class="line">        <span class="keyword">if</span>(maxflow &gt;= rest) puts(<span class="string">"ZQC! ZQC!"</span>);</div><div class="line">        <span class="keyword">else</span> puts(<span class="string">"qaq"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/uncategorized/Python的深拷贝和浅拷贝/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OrangeLuYao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orange小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/src/uncategorized/Python的深拷贝和浅拷贝/" itemprop="url">Python的深拷贝和浅拷贝</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-20T17:16:52+08:00">
+                2018-04-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天实现Python的排序问题，比如如下的代码：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge</span><span class="params">(self, l, r)</span>:</span></div><div class="line">    <span class="keyword">if</span> l == r - <span class="number">1</span> <span class="keyword">or</span> l == r:</div><div class="line">        <span class="keyword">return</span></div><div class="line"></div><div class="line">    mid = (l + r) // <span class="number">2</span></div><div class="line">    self.merge(l, mid)</div><div class="line">    self.merge(mid, r)</div><div class="line"></div><div class="line">    length = r - l</div><div class="line">    left = [i <span class="keyword">for</span> i <span class="keyword">in</span> self.data[l:mid]]</div><div class="line">    right = [i <span class="keyword">for</span> i <span class="keyword">in</span> self.data[mid:r]]</div><div class="line"></div><div class="line">    i = j = <span class="number">0</span></div><div class="line">    k = l</div><div class="line">    <span class="keyword">while</span> i &lt; len(left) <span class="keyword">and</span> j &lt; len(right):</div><div class="line">        <span class="keyword">if</span> left[i] &lt; right[j]:</div><div class="line">            self.data[k] = left[i]</div><div class="line">            i += <span class="number">1</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            self.data[k] = right[j]</div><div class="line">            j += <span class="number">1</span></div><div class="line">        k += <span class="number">1</span></div><div class="line">    <span class="keyword">if</span> i == len(left):</div><div class="line">        <span class="keyword">while</span> k - l &lt; length:</div><div class="line">            self.data[k] = right[j]</div><div class="line">            k += <span class="number">1</span></div><div class="line">            j += <span class="number">1</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">while</span> k - l &lt; length:</div><div class="line">            self.data[k] = left[i]</div><div class="line">            i += <span class="number">1</span></div><div class="line">            k += <span class="number">1</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">MergeSort</span><span class="params">(self)</span>:</span></div><div class="line">    len = self.n</div><div class="line">    self.merge(<span class="number">0</span>, len)</div><div class="line">    <span class="keyword">return</span> self.data</div></pre></td></tr></table></figure>
+<p>以上是正确的写法，但是一开始的写法是直接使用了：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">left = self.data[l:mid]</div><div class="line">right = self.data[mid+<span class="number">1</span>:r]</div></pre></td></tr></table></figure>
+<p>这样子实际上 <code>left</code> 和 <code>right</code> 就是一个实际的应用，也就是说修改这个的时候会同时原来的 <code>self.data</code><br>的数据，为了避免这个问题，我们的拷贝必须使用 一些特殊的技巧：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">newList = list(arr[l:r])</div><div class="line">newList = [i <span class="keyword">for</span> i <span class="keyword">in</span> arr[l:r]]</div><div class="line"></div><div class="line"><span class="keyword">import</span> copy <span class="keyword">as</span> cp <span class="comment"># emmmm，这个缩写，233333</span></div><div class="line">newList = cp.copy(arr[l:r])</div></pre></td></tr></table></figure>
+<p>一般不用引入一个包来解决问题，前两个已经很不错了</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/uncategorized/anaconda-src/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OrangeLuYao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orange小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/src/uncategorized/anaconda-src/" itemprop="url">anaconda src</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-20T17:15:32+08:00">
+                2018-04-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="anaconda-清华源"><a href="#anaconda-清华源" class="headerlink" title=" anaconda 清华源 "></a><a href="https://blog.csdn.net/kissacm/article/details/79160866" target="_blank" rel="external"> anaconda 清华源 </a></h1><p>只是备用的，注意最好三个都要添加，不然会有一些把到默认源去下载</p>
+<pre><code>https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/
+https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
+</code></pre><p>使用的命令也很简单：</p>
+<blockquote>
+<p>conda config –add channels “源名称”</p>
 </blockquote>
 
           
@@ -1029,7 +842,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/日志/才摔了几跤，就说这是人生/">
+    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/uncategorized/Pytorch-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="OrangeLuYao">
@@ -1048,7 +861,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/src/日志/才摔了几跤，就说这是人生/" itemprop="url">才摔了几跤，就说这是人生</a></h1>
+                <a class="post-title-link" href="/src/uncategorized/Pytorch-1/" itemprop="url">Pytorch(1)</a></h1>
         
 
         <div class="post-meta">
@@ -1060,278 +873,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-07T12:31:38+08:00">
-                2017-10-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/日志/" itemprop="url" rel="index">
-                    <span itemprop="name">日志</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/web技术/nodejs-教程-0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="OrangeLuYao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orange小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/src/web技术/nodejs-教程-0/" itemprop="url">nodejs 教程(0)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-30T01:07:03+08:00">
-                2017-09-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/web技术/" itemprop="url" rel="index">
-                    <span itemprop="name">web技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Nodejs"><a href="#Nodejs" class="headerlink" title="Nodejs"></a>Nodejs</h1><p><img src="/img/web/nodejs/nodejs.jpg" alt=""><br>开始写NodeJs的教程,能写多少写多少吧，不强求</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.write(<span class="string">"Hello NodeJs!"</span>)</div></pre></td></tr></table></figure>
-<p>主要是为了学习electron做桌面应用，竟然开了这么大一个坑<br>基础结束之后还会有一个express + mongodb + pug + bootstrap + vuejs的一个blog系统<br>随后就开始开坑写electron</p>
-<p><a href="http://www.runoob.com/nodejs/nodejs-tutorial.html" target="_blank" rel="external">Node菜鸟教程</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/uncategorized/nodejs-教程-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="OrangeLuYao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orange小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/src/uncategorized/nodejs-教程-2/" itemprop="url">nodejs 教程(2)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-30T01:06:50+08:00">
-                2017-09-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-20T17:13:30+08:00">
+                2018-04-20
               </time>
             
 
@@ -1367,150 +910,488 @@
       
         
           
-            
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/web技术/nodejs-教程-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="OrangeLuYao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orange小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/src/web技术/nodejs-教程-1/" itemprop="url">nodejs 教程(1)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-30T01:05:42+08:00">
-                2017-09-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/web技术/" itemprop="url" rel="index">
-                    <span itemprop="name">web技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Nodejs教程"><a href="#Nodejs教程" class="headerlink" title="Nodejs教程"></a>Nodejs教程</h1><h2 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h2><h3 id="使用回掉函数的理由"><a href="#使用回掉函数的理由" class="headerlink" title="使用回掉函数的理由"></a>使用回掉函数的理由</h3><p>为什么要有回调函数，看一个例子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</div><div class="line"><span class="keyword">var</span> data = fs.readFileSync(<span class="string">'input.txt'</span>);</div><div class="line"><span class="built_in">console</span>.log(data.toString());</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"程序执行结束!"</span>);</div></pre></td></tr></table></figure></p>
-<p>这个程序在一般<code>C++</code>中没什么问题，但是在网络应用中就不方便了，所以为了效率起见，我们一般使用下面的非阻塞代码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</div><div class="line">fs.readFile(<span class="string">'input.txt'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (err) <span class="keyword">return</span> <span class="built_in">console</span>.error(err);</div><div class="line">    <span class="built_in">console</span>.log(data.toString());</div><div class="line">&#125;);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"程序执行结束!"</span>);</div></pre></td></tr></table></figure>
-<h3 id="callback-hell"><a href="#callback-hell" class="headerlink" title="callback hell"></a>callback hell</h3><p>但是，一定要注意不要频繁使用回调函数，因为这个东西会使得代码逻辑一片混乱，嵌套过深，可读性和可维护性都非常糟糕。<br>比如下面这个：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">req.models.vote.create(record, funtion(err, result)&#123;</div><div class="line">    <span class="comment">// 回调函数B</span></div><div class="line">    <span class="keyword">if</span> (err) &#123;</div><div class="line">        <span class="comment">// blablabla...</span></div><div class="line">        <span class="comment">// 对B执行结果的异常处理</span></div><div class="line">    &#125;</div><div class="line">    req.models.xxx.find(..,<span class="function"><span class="keyword">function</span>(<span class="params">err,result</span>)</span>&#123;</div><div class="line">        <span class="comment">// 回调函数C</span></div><div class="line">        <span class="keyword">if</span> (err)&#123;</div><div class="line">            <span class="comment">// 对C执行结果的异常处理</span></div><div class="line">        &#125;</div><div class="line">        req.models.xxx.find(..,<span class="function"><span class="keyword">function</span>(<span class="params">err,result</span>)</span>&#123;</div><div class="line">            <span class="comment">// 回调函数D</span></div><div class="line">            <span class="keyword">if</span> (err) &#123;..&#125;</div><div class="line">        &#125;)</div><div class="line">    &#125;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<p>这个就是<code>callback hell</code>，但是为了代码的可维护性，于是使用中间件。<br>而很多的模块就是使用中间件进行操作的。这也是模块化的一个重要操作。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 【router.js】</span></div><div class="line"><span class="keyword">var</span> test = <span class="built_in">require</span>(<span class="string">'./test.js'</span>)</div><div class="line">app.post(<span class="string">'/'</span>,test.a,test.b) ;</div><div class="line"></div><div class="line"><span class="comment">// 【test.js】</span></div><div class="line"><span class="built_in">module</span>.exports.a = <span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123; <span class="comment">//必须有这三个变量</span></div><div class="line">    req.models.vote.create(record, funtion(err, result)&#123;</div><div class="line">    <span class="comment">// 回调函数B</span></div><div class="line">    <span class="keyword">if</span> (err) &#123;</div><div class="line">        <span class="comment">// blablabla...</span></div><div class="line">        <span class="comment">// 对B执行结果的异常处理</span></div><div class="line">        <span class="keyword">return</span> res ; <span class="comment">//返回http请求，不进入下一单元</span></div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 一些非异步的操作..</span></div><div class="line">    next() ; </div><div class="line">    <span class="comment">// 如果后面还有中间件，则next表示传给下个中间件</span></div><div class="line">    &#125;</div><div class="line">&#125; ;</div><div class="line"><span class="built_in">module</span>.exports.b = <span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</div><div class="line">    req.models.vote.create(record, funtion(err, result)&#123;</div><div class="line">    <span class="comment">// 回调函数B</span></div><div class="line">    <span class="keyword">if</span> (err) &#123;</div><div class="line">        <span class="comment">// blablabla...</span></div><div class="line">        <span class="comment">// 对B执行结果的异常处理</span></div><div class="line">        <span class="keyword">return</span> res ; </div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 一些非异步的操作..</span></div><div class="line">    <span class="keyword">return</span> res ;</div><div class="line">    <span class="comment">// 如果是最后一个中间件，则不能有next函数，不然会导致无响应</span></div><div class="line">    &#125;</div><div class="line">&#125; ;</div></pre></td></tr></table></figure></p>
-<h3 id="关于next函数"><a href="#关于next函数" class="headerlink" title="关于next函数"></a>关于next函数</h3><p><a href="http://blog.csdn.net/xyr05288/article/details/51890738" target="_blank" rel="external">next函数</a></p>
-<p><code>next()</code>函数主要是用来确保所有注册的中间件被一个接一个的执行，那么我们就应该在所有的中间件中调用next函数，但有一个特例，如果我们定义的中间件终结了本次请求，那就不应该再调用next函数，否则就可能会出问题，我们来看段代码</p>
-<p>(中间件这里先说一下，就是app.use()注册的中间件)<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// next()的内部机制</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">next</span>(<span class="params">err</span>) </span>&#123;</div><div class="line">    ... <span class="comment">//此处源码省略</span></div><div class="line">    <span class="comment">// find next matching layer</span></div><div class="line">    <span class="keyword">var</span> layer;</div><div class="line">    <span class="keyword">var</span> match;</div><div class="line">    <span class="keyword">var</span> route;</div><div class="line"></div><div class="line">    <span class="keyword">while</span> (match !== <span class="literal">true</span> &amp;&amp; idx &lt; stack.length) &#123;</div><div class="line">      layer = stack[idx++];</div><div class="line">      match = matchLayer(layer, path);</div><div class="line">      route = layer.route;</div><div class="line"></div><div class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> match !== <span class="string">'boolean'</span>) &#123;</div><div class="line">        <span class="comment">// hold on to layerError</span></div><div class="line">        layerError = layerError || match;</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="keyword">if</span> (match !== <span class="literal">true</span>) &#123;</div><div class="line">        <span class="keyword">continue</span>;</div><div class="line">      &#125;</div><div class="line">      ... <span class="comment">//此处源码省略</span></div><div class="line">    &#125;</div><div class="line">    ... <span class="comment">//此处源码省略</span></div><div class="line">    <span class="comment">// this should be done for the layer</span></div><div class="line">    <span class="keyword">if</span> (err) &#123;</div><div class="line">        layer.handle_error(err, req, res, next);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        layer.handle_request(req, res, next);</div><div class="line">    &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
-<h2 id="NodeJs-事件循环"><a href="#NodeJs-事件循环" class="headerlink" title="NodeJs 事件循环"></a>NodeJs 事件循环</h2><blockquote>
-<p>下面再说</p>
+            <blockquote>
+<p>什么基础的Tensor和Variable之类打基础我就不说了，如果以后有问题再说<br>这里就做东西好了<br>特别鸣谢网上的很多打大大的blog和教程，如果有侵权行为，请私信联系我，我立刻删除相关内容</p>
 </blockquote>
+<h1 id="Pytorch实现一个简单的回归"><a href="#Pytorch实现一个简单的回归" class="headerlink" title="Pytorch实现一个简单的回归"></a>Pytorch实现一个简单的回归</h1><p>环境  </p>
+<ul>
+<li>anoconda3   </li>
+<li>python3   </li>
+<li>ubuntu16.04 <figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line"><span class="string">"""</span></div><div class="line">这篇文章用于尝试一个回归问题</div><div class="line">"""</div><div class="line"><span class="keyword">import</span> torch</div><div class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</div><div class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> func</div><div class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</div><div class="line"><span class="keyword">from</span> torch.autograd <span class="keyword">import</span> Variable</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"></div><div class="line"><span class="comment"># 首先构造一点加噪声打数据</span></div><div class="line"><span class="comment"># unsqueeze(input,Dim)</span></div><div class="line"><span class="comment"># 会为input增加一维</span></div><div class="line">x = torch.unsqueeze(torch.linspace(<span class="number">-1</span>, <span class="number">1</span>, <span class="number">100</span>), dim=<span class="number">1</span>)</div><div class="line">y = x.pow(<span class="number">2</span>) + <span class="number">0.2</span> * torch.rand(x.size())</div><div class="line"></div><div class="line"><span class="comment"># 用 Variable 来修饰这些数据 tensor</span></div><div class="line">x, y = torch.autograd.Variable(x), Variable(y)</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># 画图</span></div><div class="line"><span class="comment"># plt.scatter(x.data.numpy(), y.data.numpy())</span></div><div class="line"><span class="comment"># plt.show()</span></div><div class="line"></div><div class="line"><span class="comment"># 下面我们建立一个神经网络</span></div><div class="line"><span class="comment"># 以下两个函数必须必须</span></div><div class="line"><span class="comment"># torch的反向传播是由</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Net</span><span class="params">(nn.Module)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, input_num, hidden_num, output_num)</span>:</span></div><div class="line">        super(Net, self).__init__()</div><div class="line">        self.hidden = torch.nn.Linear(input_num, hidden_num)</div><div class="line">        self.predict = torch.nn.Linear(hidden_num, output_num)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></div><div class="line">        x = self.hidden(x)</div><div class="line">        x = func.relu(x)</div><div class="line">        x = self.predict(x)</div><div class="line">        <span class="keyword">return</span> x</div><div class="line"></div><div class="line"><span class="comment"># 输入和输出没有悬念</span></div><div class="line"><span class="comment"># hidden层节点数打确立现在还没有头绪</span></div><div class="line">net = Net(input_num=<span class="number">1</span>,hidden_num=<span class="number">10</span>,output_num=<span class="number">1</span>)</div><div class="line">print(net)</div><div class="line"><span class="comment"># 下面就是训练过程</span></div><div class="line"><span class="comment"># optimizer 是训练的工具</span></div><div class="line">optimizer = torch.optim.SGD(net.parameters(), lr=<span class="number">0.5</span>)  <span class="comment"># 传入 net 的所有参数, 学习率</span></div><div class="line"><span class="comment"># 预测值和真实值的误差计算公式 (均方差)</span></div><div class="line">loss_func = torch.nn.MSELoss()</div><div class="line"></div><div class="line"><span class="comment"># t是训练次数</span></div><div class="line"><span class="keyword">for</span> t <span class="keyword">in</span> range(<span class="number">100</span>):</div><div class="line">    prediction = net(x)</div><div class="line">    loss = loss_func(prediction, y)</div><div class="line"></div><div class="line">    <span class="comment"># pytorch里面的数据是怎么交互打呢？</span></div><div class="line">    <span class="comment"># 清空上一步的残余更新参数值</span></div><div class="line">    optimizer.zero_grad()</div><div class="line"></div><div class="line">    <span class="comment"># 误差反向传播, 计算参数更新值</span></div><div class="line">    loss.backward()</div><div class="line"></div><div class="line">    <span class="comment"># 将参数更新值施加到 net 的 parameters 上</span></div><div class="line">    optimizer.step()</div><div class="line"></div><div class="line">prediction = net(x)</div><div class="line">plt.cla()</div><div class="line">plt.scatter(x.data.numpy(), y.data.numpy())</div><div class="line">plt.plot(x.data.numpy(), prediction.data.numpy(), <span class="string">'r-'</span>, lw=<span class="number">5</span>)</div><div class="line">plt.text(<span class="number">0.5</span>, <span class="number">0</span>, <span class="string">'Loss=%.4f'</span> % loss.data[<span class="number">0</span>], fontdict=&#123;<span class="string">'size'</span>: <span class="number">20</span>, <span class="string">'color'</span>:  <span class="string">'red'</span>&#125;)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="https://img-blog.csdn.net/20180125203132538?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2lzc2FjbQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="图片描述"></p>
+<p>具体解释在注释中</p>
+<p>这里我们看到一个问题，就是Pytorch中的loss 和optim是如何交互的呢？这个问题，我们以后打blog讲解</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/uncategorized/UVA-11402/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OrangeLuYao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orange小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/src/uncategorized/UVA-11402/" itemprop="url">UVA-11402</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-20T17:11:27+08:00">
+                2018-04-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>不过是个很好的题目，两种标记是互相影响的，注意到什么标记的更新会使得另外的标记一并更新<br>题目和解法见注释</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">    * UVA 11402</div><div class="line">    * 四种操作</div><div class="line">    * 注意两种标记会相互影响的时候的处理</div><div class="line">    */</div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> lson rt&lt;&lt;1</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> rson rt&lt;&lt;1|1</span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">1100080</span>; </div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Segment</span>&#123;</span></div><div class="line">    <span class="keyword">int</span> l,r;</div><div class="line">    <span class="keyword">int</span> sum,len;</div><div class="line">    <span class="keyword">int</span> rev,tag;<span class="comment">// tag = 1 表示区间中都是１，tag = 0 表示区间中都是0，tag = -1 表示区间中01不一定</span></div><div class="line">&#125;tree[MAXN &lt;&lt; <span class="number">2</span>];</div><div class="line"><span class="keyword">int</span> n,a[MAXN];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushup</span><span class="params">(<span class="keyword">int</span> rt)</span></span>&#123;</div><div class="line">    tree[rt].sum = tree[lson].sum + tree[rson].sum;</div><div class="line">    tree[rt].tag = <span class="number">-1</span>;</div><div class="line">    tree[rt].rev = <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line">    * 这里，关于pushdown函数，传递的到底应该是标记</div><div class="line">    * 还是说可以传递数据</div><div class="line">    */</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushdown</span><span class="params">(<span class="keyword">int</span> rt)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(tree[rt].tag == <span class="number">1</span>)&#123;</div><div class="line">        tree[lson].tag = tree[rson].tag = <span class="number">1</span>;</div><div class="line">        tree[lson].sum = tree[lson].len;</div><div class="line">        tree[rson].sum = tree[rson].len;</div><div class="line">        tree[lson].rev = tree[rson].rev = <span class="number">0</span>;</div><div class="line">        tree[rt].tag = <span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(tree[rt].tag == <span class="number">0</span>)&#123;</div><div class="line">        tree[lson].tag = tree[rson].tag = <span class="number">0</span>;</div><div class="line">        tree[lson].sum = tree[rson].sum = <span class="number">0</span>;</div><div class="line">        tree[lson].rev = tree[rson].rev = <span class="number">0</span>;</div><div class="line">        tree[rt].tag = <span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span>(tree[rt].rev == <span class="number">1</span>)&#123;</div><div class="line">        tree[lson].rev = <span class="number">1</span> - tree[lson].rev;</div><div class="line">        tree[rson].rev = <span class="number">1</span> - tree[rson].rev;</div><div class="line">        <span class="comment">// tree[rt].sum = tree[rt].len - tree[rt].sum;</span></div><div class="line">        tree[lson].sum = tree[lson].len - tree[lson].sum;       </div><div class="line">        tree[rson].sum = tree[rson].len - tree[rson].sum;</div><div class="line">        tree[rt].rev = <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</div><div class="line">    tree[rt].l = l;</div><div class="line">    tree[rt].r = r;</div><div class="line">    tree[rt].len = r - l + <span class="number">1</span>; </div><div class="line">    <span class="keyword">if</span>(l == r)&#123;</div><div class="line">        tree[rt].rev = <span class="number">0</span>;</div><div class="line">        tree[rt].tag = <span class="number">-1</span>;</div><div class="line">        tree[rt].sum = a[l];</div><div class="line">        <span class="keyword">return</span> ;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;</div><div class="line"></div><div class="line">    build(lson,l,mid);</div><div class="line">    build(rson,mid+<span class="number">1</span>,r);</div><div class="line"></div><div class="line">    pushup(rt);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">update_rev</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</div><div class="line">    <span class="comment">/*</span></div><div class="line">        *　这里，当整个节点都在更改的位置中</div><div class="line">        *  所以整段可以直接更新、返回</div><div class="line">        */</div><div class="line">    <span class="keyword">if</span>(l &lt;= tree[rt].l &amp;&amp; tree[rt].r &lt;= r)&#123;</div><div class="line">        tree[rt].rev = <span class="number">1</span> - tree[rt].rev;</div><div class="line">        tree[rt].sum = tree[rt].len - tree[rt].sum;</div><div class="line">        <span class="comment">// tree[rt].sum = tree[rt].len - tree[rt].sum;</span></div><div class="line">        <span class="keyword">return</span> ;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> mid = (tree[rt].l + tree[rt].r) &gt;&gt; <span class="number">1</span>;</div><div class="line">    pushdown(rt);</div><div class="line"></div><div class="line">    <span class="keyword">if</span>(l &lt;= mid) update_rev(lson,l,r);</div><div class="line">    <span class="keyword">if</span>(r &gt; mid) update_rev(rson,l,r);</div><div class="line"></div><div class="line">    pushup(rt);</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> data)</span></span>&#123;</div><div class="line">    <span class="comment">/*</span></div><div class="line">        *　这里，当整个节点都在更改的位置中</div><div class="line">        *  所以整段可以直接更新、返回</div><div class="line">        */</div><div class="line">    <span class="keyword">if</span>(l &lt;= tree[rt].l &amp;&amp; tree[rt].r &lt;= r)&#123;</div><div class="line">        tree[rt].tag = data;</div><div class="line">        tree[rt].sum = tree[rt].len * data;</div><div class="line">        tree[rt].rev = <span class="number">0</span>;</div><div class="line">        <span class="keyword">return</span> ;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> mid = (tree[rt].l + tree[rt].r) &gt;&gt; <span class="number">1</span>;</div><div class="line">    pushdown(rt);</div><div class="line"></div><div class="line">    <span class="keyword">if</span>(l &lt;= mid) update(lson,l,r,data);</div><div class="line">    <span class="keyword">if</span>(r &gt; mid) update(rson,l,r,data);</div><div class="line"></div><div class="line">    pushup(rt);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(l &lt;= tree[rt].l &amp;&amp; tree[rt].r &lt;= r)&#123;</div><div class="line">        <span class="keyword">return</span> tree[rt].sum;</div><div class="line">    &#125;</div><div class="line">    pushdown(rt);</div><div class="line">    <span class="keyword">int</span> mid = (tree[rt].l + tree[rt].r) &gt;&gt; <span class="number">1</span>;</div><div class="line"></div><div class="line">    <span class="keyword">if</span>(r &lt;= mid) <span class="keyword">return</span> query(lson,l,r);</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(l &gt;= mid+<span class="number">1</span>) <span class="keyword">return</span> query(rson,l,r);</div><div class="line">    <span class="keyword">else</span> <span class="keyword">return</span> query(lson,l,r) + query(rson,l,r);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">char</span> ch[<span class="number">105</span>];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> T,nc = <span class="number">1</span>;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;T);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> cas = <span class="number">1</span>;cas &lt;= T;cas ++)&#123;</div><div class="line">        <span class="keyword">int</span> tmp,tt = <span class="number">0</span>;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">            <span class="built_in">memset</span>(ch,<span class="number">0</span>,<span class="keyword">sizeof</span> ch);</div><div class="line">            <span class="built_in">scanf</span>(<span class="string">"%d\n%s"</span>,&amp;tmp,ch);</div><div class="line">            <span class="keyword">int</span> chlen = <span class="built_in">strlen</span>(ch);</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> t = <span class="number">0</span>;t &lt; tmp;t++)&#123;</div><div class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j &lt; chlen;j++)&#123;</div><div class="line">                    a[++tt] = ch[j] - <span class="string">'0'</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        build(<span class="number">1</span>,<span class="number">1</span>,tt);</div><div class="line"></div><div class="line">        <span class="keyword">char</span> op[<span class="number">2</span>];</div><div class="line">        <span class="keyword">int</span> l,r,qm,qq = <span class="number">0</span>;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;qm);</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"Case %d:\n"</span>,cas);</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> Q = <span class="number">1</span>;Q &lt;= qm;Q ++)&#123;</div><div class="line">            <span class="built_in">scanf</span>(<span class="string">"%s%d%d"</span>,op,&amp;l,&amp;r);</div><div class="line">            l ++,r ++;</div><div class="line">            <span class="keyword">if</span>(op[<span class="number">0</span>] == <span class="string">'F'</span>)&#123;</div><div class="line">                <span class="comment">// F 置为１</span></div><div class="line">                update(<span class="number">1</span>,l,r,<span class="number">1</span>);                </div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(op[<span class="number">0</span>] == <span class="string">'E'</span>)&#123;</div><div class="line">                <span class="comment">// E　置为０</span></div><div class="line">                update(<span class="number">1</span>,l,r,<span class="number">0</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(op[<span class="number">0</span>] == <span class="string">'I'</span>)&#123;</div><div class="line">                <span class="comment">// I 反</span></div><div class="line">                update_rev(<span class="number">1</span>,l,r);  </div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(op[<span class="number">0</span>] == <span class="string">'S'</span>) &#123;</div><div class="line">                <span class="comment">// ask</span></div><div class="line">                <span class="keyword">int</span> ans = query(<span class="number">1</span>,l,r);</div><div class="line">                <span class="built_in">printf</span>(<span class="string">"Q%d: %d\n"</span>,++qq,ans);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/uncategorized/HDU-1032/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OrangeLuYao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orange小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/src/uncategorized/HDU-1032/" itemprop="url">HDU-1032</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-20T17:09:52+08:00">
+                2018-04-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>来源：<a href="http://acm.hdu.edu.cn/showproblem.php?pid=1032" target="_blank" rel="external">http://acm.hdu.edu.cn/showproblem.php?pid=1032</a></p>
+<p>HDU1032.</p>
+<p>角谷猜想，其实这个定理还没有被证明，所以不能确定是否所以有数都满足这个情况的，所以这个题目可能不是太严谨，但是这个数据里面肯定没有问题的</p>
+<p>WA点就是输入的两个数大小不是确定的，所以要注意，而且，开始的输出也是不能变的，所以这里有一个技巧，就是：对于Case之类的东西最好一开始就输出，后面再计算<br>要用算法发东西。</p>
+<p>题目很水，不细说了。</p>
+<p>AC代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> cnt=<span class="number">0</span>;</div><div class="line">    <span class="keyword">if</span>(n==<span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(n&gt;<span class="number">1</span>)&#123;</div><div class="line">        <span class="keyword">if</span>(n%<span class="number">2</span>==<span class="number">0</span>) n/=<span class="number">2</span>;</div><div class="line">        <span class="keyword">else</span> n=<span class="number">3</span>*n+<span class="number">1</span>;</div><div class="line">        cnt++;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> cnt+<span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> x,y,res,i,m;</div><div class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;x&gt;&gt;y)&#123;</div><div class="line">        res=<span class="number">0</span>;</div><div class="line">        <span class="built_in">cout</span>&lt;&lt;x&lt;&lt;<span class="string">" "</span>&lt;&lt;y&lt;&lt;<span class="string">" "</span>;</div><div class="line">        <span class="keyword">if</span>(x&gt;y)&#123;</div><div class="line">            m=x;</div><div class="line">            x=y;</div><div class="line">            y=m;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span>(i=x;i&lt;=y;i++)&#123;</div><div class="line">            <span class="keyword">if</span>(res&lt;f(i)) res=f(i);</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">cout</span>&lt;&lt;res&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/uncategorized/POJ-3122/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OrangeLuYao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orange小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/src/uncategorized/POJ-3122/" itemprop="url">POJ-3122</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-20T17:06:28+08:00">
+                2018-04-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>来源：<a href="http://poj.org/problem?id=3122" target="_blank" rel="external">http://poj.org/problem?id=3122</a></p>
+<p>POJ3122</p>
+<p>就是说现在有N个饼，F个朋友来分，要求（F+1）个能分的一块饼上的一块，不能来自不同的饼，这个题目就明显多了，就是估计大概的饼的面积，然后分了试试看，模拟进<br>行和人数进行比较。</p>
+<p>技巧：</p>
+<p>1.这里POJ的DISCUSS中提到，这里pi取3.1415926不够，所以这里可以用pi=acos(-1.0)这样，可以规避这个错误。</p>
+<p>2.double类型不要用l&lt;=r，而是l-r&gt;1e-6来判断是否应该结束。当然，这里的精度要求没有这么高。</p>
+<p>3.最后要用.f提交，这是题目要求。。。可怕的要求，不过好多人WA在这了</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> Maxn=<span class="number">10010</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">double</span> pi=<span class="built_in">acos</span>(<span class="number">-1.0</span>);</div><div class="line"><span class="keyword">double</span> a[Maxn];</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">judge</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> f,<span class="keyword">double</span> s)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> cnt=<span class="number">0</span>,i;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)&#123;</div><div class="line">        cnt+=(<span class="keyword">int</span>)<span class="built_in">floor</span>(a[i]/s);</div><div class="line">        <span class="keyword">if</span>(cnt&gt;=f) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(<span class="keyword">double</span> a,<span class="keyword">double</span> b)</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> a&gt;b;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> c;</div><div class="line">    <span class="keyword">int</span> n,f;</div><div class="line">    <span class="keyword">double</span> s,mp;</div><div class="line">    <span class="keyword">double</span> ans;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;c);</div><div class="line">    <span class="keyword">while</span>(c--)&#123;</div><div class="line">        ans=s=<span class="number">0</span>;</div><div class="line">        <span class="built_in">memset</span>(a,<span class="number">0</span>,<span class="keyword">sizeof</span>(a));</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;f);</div><div class="line">        f++;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</div><div class="line">            <span class="built_in">scanf</span>(<span class="string">"%lf"</span>,&amp;a[i]);</div><div class="line">            a[i]=a[i]*a[i]*pi;</div><div class="line">            s+=a[i];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">double</span> r,l;</div><div class="line">        sort(a,a+n,cmp);</div><div class="line">        <span class="comment">//cout&lt;&lt;a[0]&lt;&lt;" "&lt;&lt;a[n-1]&lt;&lt;endl;</span></div><div class="line">        r=s/(<span class="keyword">double</span>)f;</div><div class="line">        l=a[<span class="number">0</span>]/(<span class="keyword">double</span>)f;</div><div class="line">        <span class="keyword">while</span>(r&gt;<span class="number">1e-5</span>+l)&#123;</div><div class="line">            <span class="keyword">double</span> mid=(r-l)/<span class="number">2</span>+l;</div><div class="line">            <span class="keyword">if</span>(judge(n,f,mid))&#123;</div><div class="line">                l=mid;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span>&#123;</div><div class="line">                r=mid;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%.4f\n"</span>,l);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/uncategorized/POJ-3104/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OrangeLuYao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orange小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/src/uncategorized/POJ-3104/" itemprop="url">POJ-3104</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-20T17:04:23+08:00">
+                2018-04-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>来源： <a href="http://poj.org/problem?id=3104" target="_blank" rel="external"> http://poj.org/problem?id=3104 </a></p>
+<p>POJ3104</p>
+<p>用模拟会超时，所以考虑用二分节约时间</p>
+<p>首先分析，实际上是每一次都是去烘干水量最大的，风干其他的，然后烘完再排序一下，重复这一操作，直到所有的都为1。当然，模拟显然是会超时的。所以我们这样考虑，我<br>们这样考虑，如果对于一个时间t，我们的有一部分衣服就会自然风干，有一部分衣服需要自己来烘干，所以我们来二分列举时间。</p>
+<p>这里有几个注意点（网上其他题解中提到的）：</p>
+<p>1.a/b向上取整有(a+b-1)/b;</p>
+<p>2.注意k==1的情况</p>
+<p>大概就是这样。。。</p>
+<p>AC代码：（本人在VJ上做的这一题，不是在POJ，有人和我说可能有区别，这。。。就很尴尬了）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> Maxn=<span class="number">100100</span>;</div><div class="line"><span class="keyword">int</span> a[Maxn];</div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">judge</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> n,<span class="keyword">int</span> k)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> t=<span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</div><div class="line">        <span class="keyword">if</span>(a[i]&gt;x)&#123;</div><div class="line">            t+=(a[i]-x+k<span class="number">-2</span>)/(k<span class="number">-1</span>);</div><div class="line">            <span class="comment">//这个地方就是用的那个技巧</span></div><div class="line">            <span class="comment">//计算烘干a[i]的时间，并叠加</span></div><div class="line">            <span class="keyword">if</span>(t&gt;x)<span class="keyword">return</span> <span class="literal">false</span>;<span class="comment">//如果大于我假设的，就要判断为false</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> n,k;</div><div class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">0</span>,t;</div><div class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n)!=EOF)&#123;</div><div class="line">        ans=<span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</div><div class="line">            <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i]);</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;k);</div><div class="line">        sort(a,a+n);</div><div class="line">        <span class="keyword">if</span>(k==<span class="number">1</span>)&#123;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,a[n<span class="number">-1</span>]);</div><div class="line">            <span class="keyword">continue</span>;</div><div class="line">        &#125;<span class="comment">//k==1的特殊处理</span></div><div class="line">        <span class="keyword">int</span> l=<span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> r=a[n<span class="number">-1</span>];</div><div class="line">        <span class="keyword">while</span>(l&lt;=r)&#123;</div><div class="line">            <span class="keyword">int</span> mid=l+(r-l)/<span class="number">2</span>;</div><div class="line">            <span class="keyword">int</span> sum=<span class="number">0</span>;</div><div class="line">            <span class="keyword">if</span>(judge(mid,n,k))&#123;</div><div class="line">                ans=mid;</div><div class="line">                r=mid<span class="number">-1</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span>&#123;</div><div class="line">                l=mid+<span class="number">1</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%lld"</span>,ans);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>欢迎各位看官大牛点评。橙子在这谢谢！</p>
 
           
         
@@ -1549,7 +1430,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1594,7 +1475,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1616,7 +1497,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
