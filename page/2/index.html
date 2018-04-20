@@ -215,6 +215,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -231,6 +241,16 @@
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
           </a>
         </li>
       
@@ -253,6 +273,246 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/uncategorized/POJ-3122/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OrangeLuYao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orange小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/src/uncategorized/POJ-3122/" itemprop="url">POJ-3122</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-20T17:06:28+08:00">
+                2018-04-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>来源：<a href="http://poj.org/problem?id=3122" target="_blank" rel="external">http://poj.org/problem?id=3122</a></p>
+<p>POJ3122</p>
+<p>就是说现在有N个饼，F个朋友来分，要求（F+1）个能分的一块饼上的一块，不能来自不同的饼，这个题目就明显多了，就是估计大概的饼的面积，然后分了试试看，模拟进<br>行和人数进行比较。</p>
+<p>技巧：</p>
+<p>1.这里POJ的DISCUSS中提到，这里pi取3.1415926不够，所以这里可以用pi=acos(-1.0)这样，可以规避这个错误。</p>
+<p>2.double类型不要用l&lt;=r，而是l-r&gt;1e-6来判断是否应该结束。当然，这里的精度要求没有这么高。</p>
+<p>3.最后要用.f提交，这是题目要求。。。可怕的要求，不过好多人WA在这了</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> Maxn=<span class="number">10010</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">double</span> pi=<span class="built_in">acos</span>(<span class="number">-1.0</span>);</div><div class="line"><span class="keyword">double</span> a[Maxn];</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">judge</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> f,<span class="keyword">double</span> s)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> cnt=<span class="number">0</span>,i;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)&#123;</div><div class="line">        cnt+=(<span class="keyword">int</span>)<span class="built_in">floor</span>(a[i]/s);</div><div class="line">        <span class="keyword">if</span>(cnt&gt;=f) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(<span class="keyword">double</span> a,<span class="keyword">double</span> b)</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> a&gt;b;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> c;</div><div class="line">    <span class="keyword">int</span> n,f;</div><div class="line">    <span class="keyword">double</span> s,mp;</div><div class="line">    <span class="keyword">double</span> ans;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;c);</div><div class="line">    <span class="keyword">while</span>(c--)&#123;</div><div class="line">        ans=s=<span class="number">0</span>;</div><div class="line">        <span class="built_in">memset</span>(a,<span class="number">0</span>,<span class="keyword">sizeof</span>(a));</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;f);</div><div class="line">        f++;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</div><div class="line">            <span class="built_in">scanf</span>(<span class="string">"%lf"</span>,&amp;a[i]);</div><div class="line">            a[i]=a[i]*a[i]*pi;</div><div class="line">            s+=a[i];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">double</span> r,l;</div><div class="line">        sort(a,a+n,cmp);</div><div class="line">        <span class="comment">//cout&lt;&lt;a[0]&lt;&lt;" "&lt;&lt;a[n-1]&lt;&lt;endl;</span></div><div class="line">        r=s/(<span class="keyword">double</span>)f;</div><div class="line">        l=a[<span class="number">0</span>]/(<span class="keyword">double</span>)f;</div><div class="line">        <span class="keyword">while</span>(r&gt;<span class="number">1e-5</span>+l)&#123;</div><div class="line">            <span class="keyword">double</span> mid=(r-l)/<span class="number">2</span>+l;</div><div class="line">            <span class="keyword">if</span>(judge(n,f,mid))&#123;</div><div class="line">                l=mid;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span>&#123;</div><div class="line">                r=mid;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%.4f\n"</span>,l);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/uncategorized/POJ-3104/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OrangeLuYao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orange小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/src/uncategorized/POJ-3104/" itemprop="url">POJ-3104</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-20T17:04:23+08:00">
+                2018-04-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>来源： <a href="http://poj.org/problem?id=3104" target="_blank" rel="external"> http://poj.org/problem?id=3104 </a></p>
+<p>POJ3104</p>
+<p>用模拟会超时，所以考虑用二分节约时间</p>
+<p>首先分析，实际上是每一次都是去烘干水量最大的，风干其他的，然后烘完再排序一下，重复这一操作，直到所有的都为1。当然，模拟显然是会超时的。所以我们这样考虑，我<br>们这样考虑，如果对于一个时间t，我们的有一部分衣服就会自然风干，有一部分衣服需要自己来烘干，所以我们来二分列举时间。</p>
+<p>这里有几个注意点（网上其他题解中提到的）：</p>
+<p>1.a/b向上取整有(a+b-1)/b;</p>
+<p>2.注意k==1的情况</p>
+<p>大概就是这样。。。</p>
+<p>AC代码：（本人在VJ上做的这一题，不是在POJ，有人和我说可能有区别，这。。。就很尴尬了）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> Maxn=<span class="number">100100</span>;</div><div class="line"><span class="keyword">int</span> a[Maxn];</div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">judge</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> n,<span class="keyword">int</span> k)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> t=<span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</div><div class="line">        <span class="keyword">if</span>(a[i]&gt;x)&#123;</div><div class="line">            t+=(a[i]-x+k<span class="number">-2</span>)/(k<span class="number">-1</span>);</div><div class="line">            <span class="comment">//这个地方就是用的那个技巧</span></div><div class="line">            <span class="comment">//计算烘干a[i]的时间，并叠加</span></div><div class="line">            <span class="keyword">if</span>(t&gt;x)<span class="keyword">return</span> <span class="literal">false</span>;<span class="comment">//如果大于我假设的，就要判断为false</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> n,k;</div><div class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">0</span>,t;</div><div class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n)!=EOF)&#123;</div><div class="line">        ans=<span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</div><div class="line">            <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i]);</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;k);</div><div class="line">        sort(a,a+n);</div><div class="line">        <span class="keyword">if</span>(k==<span class="number">1</span>)&#123;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,a[n<span class="number">-1</span>]);</div><div class="line">            <span class="keyword">continue</span>;</div><div class="line">        &#125;<span class="comment">//k==1的特殊处理</span></div><div class="line">        <span class="keyword">int</span> l=<span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> r=a[n<span class="number">-1</span>];</div><div class="line">        <span class="keyword">while</span>(l&lt;=r)&#123;</div><div class="line">            <span class="keyword">int</span> mid=l+(r-l)/<span class="number">2</span>;</div><div class="line">            <span class="keyword">int</span> sum=<span class="number">0</span>;</div><div class="line">            <span class="keyword">if</span>(judge(mid,n,k))&#123;</div><div class="line">                ans=mid;</div><div class="line">                r=mid<span class="number">-1</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span>&#123;</div><div class="line">                l=mid+<span class="number">1</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%lld"</span>,ans);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>欢迎各位看官大牛点评。橙子在这谢谢！</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -1300,261 +1560,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/uncategorized/nodejs-教程-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="OrangeLuYao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orange小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/src/uncategorized/nodejs-教程-2/" itemprop="url">nodejs 教程(2)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-30T01:06:50+08:00">
-                2017-09-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/web技术/nodejs-教程-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="OrangeLuYao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orange小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/src/web技术/nodejs-教程-1/" itemprop="url">nodejs 教程(1)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-30T01:05:42+08:00">
-                2017-09-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/web技术/" itemprop="url" rel="index">
-                    <span itemprop="name">web技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Nodejs教程"><a href="#Nodejs教程" class="headerlink" title="Nodejs教程"></a>Nodejs教程</h1><h2 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h2><h3 id="使用回掉函数的理由"><a href="#使用回掉函数的理由" class="headerlink" title="使用回掉函数的理由"></a>使用回掉函数的理由</h3><p>为什么要有回调函数，看一个例子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</div><div class="line"><span class="keyword">var</span> data = fs.readFileSync(<span class="string">'input.txt'</span>);</div><div class="line"><span class="built_in">console</span>.log(data.toString());</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"程序执行结束!"</span>);</div></pre></td></tr></table></figure></p>
-<p>这个程序在一般<code>C++</code>中没什么问题，但是在网络应用中就不方便了，所以为了效率起见，我们一般使用下面的非阻塞代码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</div><div class="line">fs.readFile(<span class="string">'input.txt'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (err) <span class="keyword">return</span> <span class="built_in">console</span>.error(err);</div><div class="line">    <span class="built_in">console</span>.log(data.toString());</div><div class="line">&#125;);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"程序执行结束!"</span>);</div></pre></td></tr></table></figure>
-<h3 id="callback-hell"><a href="#callback-hell" class="headerlink" title="callback hell"></a>callback hell</h3><p>但是，一定要注意不要频繁使用回调函数，因为这个东西会使得代码逻辑一片混乱，嵌套过深，可读性和可维护性都非常糟糕。<br>比如下面这个：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">req.models.vote.create(record, funtion(err, result)&#123;</div><div class="line">    <span class="comment">// 回调函数B</span></div><div class="line">    <span class="keyword">if</span> (err) &#123;</div><div class="line">        <span class="comment">// blablabla...</span></div><div class="line">        <span class="comment">// 对B执行结果的异常处理</span></div><div class="line">    &#125;</div><div class="line">    req.models.xxx.find(..,<span class="function"><span class="keyword">function</span>(<span class="params">err,result</span>)</span>&#123;</div><div class="line">        <span class="comment">// 回调函数C</span></div><div class="line">        <span class="keyword">if</span> (err)&#123;</div><div class="line">            <span class="comment">// 对C执行结果的异常处理</span></div><div class="line">        &#125;</div><div class="line">        req.models.xxx.find(..,<span class="function"><span class="keyword">function</span>(<span class="params">err,result</span>)</span>&#123;</div><div class="line">            <span class="comment">// 回调函数D</span></div><div class="line">            <span class="keyword">if</span> (err) &#123;..&#125;</div><div class="line">        &#125;)</div><div class="line">    &#125;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<p>这个就是<code>callback hell</code>，但是为了代码的可维护性，于是使用中间件。<br>而很多的模块就是使用中间件进行操作的。这也是模块化的一个重要操作。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 【router.js】</span></div><div class="line"><span class="keyword">var</span> test = <span class="built_in">require</span>(<span class="string">'./test.js'</span>)</div><div class="line">app.post(<span class="string">'/'</span>,test.a,test.b) ;</div><div class="line"></div><div class="line"><span class="comment">// 【test.js】</span></div><div class="line"><span class="built_in">module</span>.exports.a = <span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123; <span class="comment">//必须有这三个变量</span></div><div class="line">    req.models.vote.create(record, funtion(err, result)&#123;</div><div class="line">    <span class="comment">// 回调函数B</span></div><div class="line">    <span class="keyword">if</span> (err) &#123;</div><div class="line">        <span class="comment">// blablabla...</span></div><div class="line">        <span class="comment">// 对B执行结果的异常处理</span></div><div class="line">        <span class="keyword">return</span> res ; <span class="comment">//返回http请求，不进入下一单元</span></div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 一些非异步的操作..</span></div><div class="line">    next() ; </div><div class="line">    <span class="comment">// 如果后面还有中间件，则next表示传给下个中间件</span></div><div class="line">    &#125;</div><div class="line">&#125; ;</div><div class="line"><span class="built_in">module</span>.exports.b = <span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</div><div class="line">    req.models.vote.create(record, funtion(err, result)&#123;</div><div class="line">    <span class="comment">// 回调函数B</span></div><div class="line">    <span class="keyword">if</span> (err) &#123;</div><div class="line">        <span class="comment">// blablabla...</span></div><div class="line">        <span class="comment">// 对B执行结果的异常处理</span></div><div class="line">        <span class="keyword">return</span> res ; </div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 一些非异步的操作..</span></div><div class="line">    <span class="keyword">return</span> res ;</div><div class="line">    <span class="comment">// 如果是最后一个中间件，则不能有next函数，不然会导致无响应</span></div><div class="line">    &#125;</div><div class="line">&#125; ;</div></pre></td></tr></table></figure></p>
-<h3 id="关于next函数"><a href="#关于next函数" class="headerlink" title="关于next函数"></a>关于next函数</h3><p><a href="http://blog.csdn.net/xyr05288/article/details/51890738" target="_blank" rel="external">next函数</a></p>
-<p><code>next()</code>函数主要是用来确保所有注册的中间件被一个接一个的执行，那么我们就应该在所有的中间件中调用next函数，但有一个特例，如果我们定义的中间件终结了本次请求，那就不应该再调用next函数，否则就可能会出问题，我们来看段代码</p>
-<p>(中间件这里先说一下，就是app.use()注册的中间件)<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// next()的内部机制</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">next</span>(<span class="params">err</span>) </span>&#123;</div><div class="line">    ... <span class="comment">//此处源码省略</span></div><div class="line">    <span class="comment">// find next matching layer</span></div><div class="line">    <span class="keyword">var</span> layer;</div><div class="line">    <span class="keyword">var</span> match;</div><div class="line">    <span class="keyword">var</span> route;</div><div class="line"></div><div class="line">    <span class="keyword">while</span> (match !== <span class="literal">true</span> &amp;&amp; idx &lt; stack.length) &#123;</div><div class="line">      layer = stack[idx++];</div><div class="line">      match = matchLayer(layer, path);</div><div class="line">      route = layer.route;</div><div class="line"></div><div class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> match !== <span class="string">'boolean'</span>) &#123;</div><div class="line">        <span class="comment">// hold on to layerError</span></div><div class="line">        layerError = layerError || match;</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="keyword">if</span> (match !== <span class="literal">true</span>) &#123;</div><div class="line">        <span class="keyword">continue</span>;</div><div class="line">      &#125;</div><div class="line">      ... <span class="comment">//此处源码省略</span></div><div class="line">    &#125;</div><div class="line">    ... <span class="comment">//此处源码省略</span></div><div class="line">    <span class="comment">// this should be done for the layer</span></div><div class="line">    <span class="keyword">if</span> (err) &#123;</div><div class="line">        layer.handle_error(err, req, res, next);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        layer.handle_request(req, res, next);</div><div class="line">    &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
-<h2 id="NodeJs-事件循环"><a href="#NodeJs-事件循环" class="headerlink" title="NodeJs 事件循环"></a>NodeJs 事件循环</h2><blockquote>
-<p>下面再说</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1604,7 +1609,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1614,10 +1619,10 @@
             
             
             <div class="site-state-item site-state-categories">
-              
+              <a href="/categories/index.html">
                 <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
-              
+              </a>
             </div>
           
 
@@ -1625,10 +1630,10 @@
             
             
             <div class="site-state-item site-state-tags">
-              
+              <a href="/tags/index.html">
                 <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">标签</span>
-              
+              </a>
             </div>
           
 
