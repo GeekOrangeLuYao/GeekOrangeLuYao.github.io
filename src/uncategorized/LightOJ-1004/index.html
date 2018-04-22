@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="algorithm," />
+  <meta name="keywords" content="algorithm,DP," />
 
 
 
@@ -93,17 +93,17 @@
 
 
 
-<meta name="description" content="2016春季练习——DP水题 来源：lightoj1004 DP水题，正在补前面的题解。 代码：1234567891011121314151617181920212223242526272829303132333435363738#include &amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cmath&amp;gt;#include &amp;lt;c">
-<meta name="keywords" content="algorithm">
+<meta name="description" content="来源：lightoj1004 DP水题，正在补前面的题解。 代码：1234567891011121314151617181920212223242526272829303132333435363738#include &amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cmath&amp;gt;#include &amp;lt;cstring&amp;gt;#inclu">
+<meta name="keywords" content="algorithm,DP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LightOJ-1004">
 <meta property="og:url" content="https://GeekOrangeLuyao.github.io/src/uncategorized/LightOJ-1004/index.html">
 <meta property="og:site_name" content="Orange小站">
-<meta property="og:description" content="2016春季练习——DP水题 来源：lightoj1004 DP水题，正在补前面的题解。 代码：1234567891011121314151617181920212223242526272829303132333435363738#include &amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cmath&amp;gt;#include &amp;lt;c">
-<meta property="og:updated_time" content="2018-04-21T18:23:43.376Z">
+<meta property="og:description" content="来源：lightoj1004 DP水题，正在补前面的题解。 代码：1234567891011121314151617181920212223242526272829303132333435363738#include &amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cmath&amp;gt;#include &amp;lt;cstring&amp;gt;#inclu">
+<meta property="og:updated_time" content="2018-04-22T14:59:05.786Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LightOJ-1004">
-<meta name="twitter:description" content="2016春季练习——DP水题 来源：lightoj1004 DP水题，正在补前面的题解。 代码：1234567891011121314151617181920212223242526272829303132333435363738#include &amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cmath&amp;gt;#include &amp;lt;c">
+<meta name="twitter:description" content="来源：lightoj1004 DP水题，正在补前面的题解。 代码：1234567891011121314151617181920212223242526272829303132333435363738#include &amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cmath&amp;gt;#include &amp;lt;cstring&amp;gt;#inclu">
 
 
 
@@ -312,7 +312,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-22T02:23:43+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-22T22:25:51+08:00">
                 2018-04-22
               </time>
             
@@ -347,7 +347,7 @@
       
 
       
-        <h1 id="2016春季练习——DP水题"><a href="#2016春季练习——DP水题" class="headerlink" title=" 2016春季练习——DP水题 "></a><a href="https://blog.csdn.net/kissacm/article/details/51537667" target="_blank" rel="external"> 2016春季练习——DP水题 </a></h1><p>来源：lightoj1004</p>
+        <p>来源：lightoj1004</p>
 <p>DP水题，正在补前面的题解。</p>
 <p>代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN=<span class="number">210</span>;</div><div class="line"><span class="keyword">int</span> a[MAXN][MAXN];</div><div class="line"><span class="keyword">long</span> <span class="keyword">long</span> ans[MAXN][MAXN];</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> T,nc=<span class="number">1</span>,n;</div><div class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;T);</div><div class="line">	<span class="keyword">while</span>(T--)&#123;</div><div class="line">        <span class="built_in">memset</span>(a,<span class="number">0</span>,<span class="keyword">sizeof</span>(a));</div><div class="line">        <span class="built_in">memset</span>(ans,<span class="number">0</span>,<span class="keyword">sizeof</span>(ans));</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</div><div class="line">        <span class="keyword">int</span> i,j;</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">            <span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=i;j++)</div><div class="line">                <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i][j]);</div><div class="line">        &#125;</div><div class="line">        <span class="comment">//cout&lt;&lt;n&lt;&lt;" : "&lt;&lt;i&lt;&lt;endl;</span></div><div class="line">        <span class="keyword">for</span>(i=n+<span class="number">1</span>;i&lt;=<span class="number">2</span>*n<span class="number">-1</span>;i++)&#123;</div><div class="line">            <span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=<span class="number">2</span>*n-i;j++)</div><div class="line">                <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i][j]);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">        <span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=i;j++)&#123;</div><div class="line">            ans[i][j]=max(ans[i<span class="number">-1</span>][j],ans[i<span class="number">-1</span>][j<span class="number">-1</span>])+a[i][j];<span class="comment">//一直到这一步和数字三角形完全一样</span></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span>(i=n+<span class="number">1</span>;i&lt;=<span class="number">2</span>*n<span class="number">-1</span>;i++)</div><div class="line">        <span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=n*<span class="number">2</span>-i;j++)&#123;</div><div class="line">            ans[i][j]=max(ans[i<span class="number">-1</span>][j],ans[i<span class="number">-1</span>][j+<span class="number">1</span>])+a[i][j];</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"Case %d: %lld\n"</span>,nc++,ans[<span class="number">2</span>*n<span class="number">-1</span>][<span class="number">1</span>]);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
@@ -380,6 +380,8 @@
         <div class="post-tags">
           
             <a href="/tags/algorithm/" rel="tag"># algorithm</a>
+          
+            <a href="/tags/DP/" rel="tag"># DP</a>
           
         </div>
       
@@ -451,17 +453,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -476,7 +469,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">84</span>
+                <span class="site-state-item-count">184</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -498,7 +491,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">76</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -523,22 +516,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2016春季练习——DP水题"><span class="nav-number">1.</span> <span class="nav-text"> 2016春季练习——DP水题 </span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

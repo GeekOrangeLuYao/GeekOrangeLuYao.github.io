@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="algorithm," />
+  <meta name="keywords" content="algorithm,Segment_Tree," />
 
 
 
@@ -93,17 +93,17 @@
 
 
 
-<meta name="description" content="2016寒假训练——线段树 来源：POJ3264 一排牛给高度，给区间求极差。。。看题目那么多废话。。。笑cry。。。 还是由于数量太大，所以必须用线段树。 这里的find要来两个照最大和最小，其他的还是比较好理解的。。。 AC代码（VJ提交）： 123456789101112131415161718192021222324252627282930313233343536373839404142">
-<meta name="keywords" content="algorithm">
+<meta name="description" content="来源：POJ3264 线段树的题目 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364#include &amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cs">
+<meta name="keywords" content="algorithm,Segment_Tree">
 <meta property="og:type" content="article">
 <meta property="og:title" content="POJ-3264">
 <meta property="og:url" content="https://GeekOrangeLuyao.github.io/src/uncategorized/POJ-3264/index.html">
 <meta property="og:site_name" content="Orange小站">
-<meta property="og:description" content="2016寒假训练——线段树 来源：POJ3264 一排牛给高度，给区间求极差。。。看题目那么多废话。。。笑cry。。。 还是由于数量太大，所以必须用线段树。 这里的find要来两个照最大和最小，其他的还是比较好理解的。。。 AC代码（VJ提交）： 123456789101112131415161718192021222324252627282930313233343536373839404142">
-<meta property="og:updated_time" content="2018-04-21T18:22:28.620Z">
+<meta property="og:description" content="来源：POJ3264 线段树的题目 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364#include &amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cs">
+<meta property="og:updated_time" content="2018-04-22T15:13:01.262Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="POJ-3264">
-<meta name="twitter:description" content="2016寒假训练——线段树 来源：POJ3264 一排牛给高度，给区间求极差。。。看题目那么多废话。。。笑cry。。。 还是由于数量太大，所以必须用线段树。 这里的find要来两个照最大和最小，其他的还是比较好理解的。。。 AC代码（VJ提交）： 123456789101112131415161718192021222324252627282930313233343536373839404142">
+<meta name="twitter:description" content="来源：POJ3264 线段树的题目 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364#include &amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cs">
 
 
 
@@ -312,7 +312,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-22T02:22:28+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-22T22:27:06+08:00">
                 2018-04-22
               </time>
             
@@ -347,12 +347,9 @@
       
 
       
-        <h1 id="2016寒假训练——线段树"><a href="#2016寒假训练——线段树" class="headerlink" title=" 2016寒假训练——线段树 "></a><a href="https://blog.csdn.net/kissacm/article/details/50735986" target="_blank" rel="external"> 2016寒假训练——线段树 </a></h1><p>来源：POJ3264</p>
-<p>一排牛给高度，给区间求极差。。。看题目那么多废话。。。笑cry。。。</p>
-<p>还是由于数量太大，所以必须用线段树。</p>
-<p>这里的find要来两个照最大和最小，其他的还是比较好理解的。。。</p>
-<p>AC代码（VJ提交）：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></div><div class="line">    <span class="keyword">int</span> l,r;</div><div class="line">    <span class="keyword">int</span> maxn,minn;</div><div class="line">&#125;;</div><div class="line">Node tree[<span class="number">200000</span>];</div><div class="line"><span class="keyword">int</span> h[<span class="number">50010</span>];</div><div class="line"><span class="keyword">int</span> minn,maxn;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r ,<span class="keyword">int</span> root)</span></span>&#123;<span class="comment">//建树，话说这已经差不多变成范式了。。。可怕。。。</span></div><div class="line">    tree[root].l=l;</div><div class="line">    tree[root].r=r;</div><div class="line">    <span class="keyword">if</span>(l==r)&#123;</div><div class="line">        tree[root].maxn=h[l];</div><div class="line">        tree[root].minn=h[l];</div><div class="line">        <span class="keyword">return</span> ;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</div><div class="line">    build(l,mid,root*<span class="number">2</span>);</div><div class="line">    build(mid+<span class="number">1</span>,r,root*<span class="number">2</span>+<span class="number">1</span>);</div><div class="line">    tree[root].maxn=max(tree[<span class="number">2</span>*root].maxn,tree[<span class="number">2</span>*root+<span class="number">1</span>].maxn);</div><div class="line">    tree[root].minn=min(tree[<span class="number">2</span>*root].minn,tree[<span class="number">2</span>*root+<span class="number">1</span>].minn);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">findmax</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> root)</span></span>&#123;<span class="comment">//这里无疑是全局maxn的功劳</span></div><div class="line">    <span class="keyword">if</span>(tree[root].l==l&amp;&amp;tree[root].r==r)&#123;</div><div class="line">        <span class="keyword">if</span>(tree[root].maxn&gt;maxn)</div><div class="line">            maxn=tree[root].maxn;</div><div class="line">        <span class="keyword">return</span> ;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> mid=(tree[root].l+tree[root].r)/<span class="number">2</span>;</div><div class="line">    <span class="keyword">if</span>(mid&gt;=r)</div><div class="line">        findmax(l,r,root*<span class="number">2</span>);</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(mid&lt;l)</div><div class="line">        findmax(l,r,root*<span class="number">2</span>+<span class="number">1</span>);</div><div class="line">    <span class="keyword">else</span> &#123;</div><div class="line">        findmax(l,mid,root*<span class="number">2</span>);</div><div class="line">        findmax(mid+<span class="number">1</span>,r,root*<span class="number">2</span>+<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">findmin</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> root)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(tree[root].l==l&amp;&amp;tree[root].r==r)&#123;</div><div class="line">        <span class="keyword">if</span>(tree[root].minn&lt;minn)</div><div class="line">            minn=tree[root].minn;</div><div class="line">        <span class="keyword">return</span> ;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> mid=(tree[root].l+tree[root].r)/<span class="number">2</span>;</div><div class="line">    <span class="keyword">if</span>(mid&gt;=r)</div><div class="line">        findmin(l,r,root*<span class="number">2</span>);</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(mid&lt;l)&#123;</div><div class="line">        findmin(l,r,root*<span class="number">2</span>+<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> &#123;</div><div class="line">        findmin(l,mid,root*<span class="number">2</span>);</div><div class="line">        findmin(mid+<span class="number">1</span>,r,root*<span class="number">2</span>+<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> n,m;</div><div class="line">	<span class="keyword">int</span> i;</div><div class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</div><div class="line">    <span class="built_in">memset</span>(h,<span class="number">0</span>,<span class="keyword">sizeof</span>(h));</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;h[i]);</div><div class="line">    build(<span class="number">1</span>,n,<span class="number">1</span>);</div><div class="line">    <span class="keyword">while</span>(m--)&#123;</div><div class="line">        <span class="keyword">int</span> a,b;</div><div class="line">        maxn=<span class="number">0</span>;</div><div class="line">        minn=<span class="number">99999999</span>;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;a,&amp;b);</div><div class="line">        findmax(a,b,<span class="number">1</span>);</div><div class="line">        findmin(a,b,<span class="number">1</span>);</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,maxn-minn);</div><div class="line">    &#125;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <p>来源：POJ3264</p>
+<p>线段树的题目</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">int</span> n,q;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">200000</span>+<span class="number">10</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">50000</span>+<span class="number">10</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF = <span class="number">0x3f3f3f3f</span>;</div><div class="line"><span class="keyword">int</span> mmax,mmin;</div><div class="line"><span class="keyword">int</span> a[MAXN];</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Tree</span>&#123;</span></div><div class="line">	<span class="keyword">int</span> l,r;</div><div class="line">	<span class="keyword">int</span> mmax,mmin;<span class="comment">//维护的值多了，就直接使用结构体</span></div><div class="line">	Tree():mmax(<span class="number">0</span>),mmin(<span class="number">0</span>)&#123;&#125;</div><div class="line">&#125;;</div><div class="line">Tree tree[MAXN*<span class="number">4</span>];</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</div><div class="line">	tree[rt].l=l;</div><div class="line">	tree[rt].r=r;</div><div class="line">	<span class="keyword">if</span>(l==r)&#123;</div><div class="line">		tree[rt].mmax=tree[rt].mmin=a[l];<span class="comment">//当前是叶子节点的时候，我们想要维护的最大值和最小值其实是一个值</span></div><div class="line">		<span class="keyword">return</span>  ;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</div><div class="line">	build(rt&lt;&lt;<span class="number">1</span>,l,mid);</div><div class="line">	build(rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,r);</div><div class="line">	tree[rt].mmax=max(tree[rt&lt;&lt;<span class="number">1</span>].mmax,tree[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].mmax);</div><div class="line">	tree[rt].mmin=min(tree[rt&lt;&lt;<span class="number">1</span>].mmin,tree[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].mmin);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> left,<span class="keyword">int</span> right)</span></span>&#123;</div><div class="line">	<span class="comment">//cout&lt;&lt;left&lt;&lt;" "&lt;&lt;right&lt;&lt;endl;</span></div><div class="line">    <span class="keyword">if</span>(tree[rt].mmax&lt;=mmax&amp;&amp;tree[rt].mmin&gt;=mmin) <span class="keyword">return</span> ;<span class="comment">//剪枝</span></div><div class="line">	<span class="keyword">if</span>(tree[rt].l==left&amp;&amp;tree[rt].r==right)&#123;</div><div class="line">		mmax=max(mmax,tree[rt].mmax);</div><div class="line">		mmin=min(mmin,tree[rt].mmin);</div><div class="line">		<span class="keyword">return</span> ;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">int</span> mid=(tree[rt].l+tree[rt].r)&gt;&gt;<span class="number">1</span>;</div><div class="line">	<span class="keyword">if</span>(right&lt;=mid) query(rt&lt;&lt;<span class="number">1</span>,left,right);<span class="comment">//注意，在单枝树转移的时候不要算进去mid，因为mid往往是区间之外的。</span></div><div class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(left&gt;mid) query(rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,left,right);<span class="comment">//同理</span></div><div class="line">	<span class="keyword">else</span>&#123;</div><div class="line">		query(rt&lt;&lt;<span class="number">1</span>,left,mid);</div><div class="line">		query(rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,right);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;q)!=EOF)&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">			<span class="built_in">scanf</span>(<span class="string">"%d"</span>,a+i);</div><div class="line">		&#125;</div><div class="line">		build(<span class="number">1</span>,<span class="number">1</span>,n);</div><div class="line">		<span class="keyword">int</span> a,b;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;q;i++)&#123;</div><div class="line">			<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;a,&amp;b);</div><div class="line">			mmax=-INF;</div><div class="line">			mmin=INF;</div><div class="line">			query(<span class="number">1</span>,a,b);</div><div class="line">			<span class="comment">//cout&lt;&lt;mmax&lt;&lt;" "&lt;&lt;mmin&lt;&lt;endl;</span></div><div class="line">			<span class="built_in">cout</span>&lt;&lt;mmax-mmin&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -383,6 +380,8 @@
           
             <a href="/tags/algorithm/" rel="tag"># algorithm</a>
           
+            <a href="/tags/Segment-Tree/" rel="tag"># Segment_Tree</a>
+          
         </div>
       
 
@@ -404,8 +403,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/src/uncategorized/HDU-3579/" rel="prev" title="HDU-3579">
-                HDU-3579 <i class="fa fa-chevron-right"></i>
+              <a href="/src/uncategorized/POJ-2182/" rel="prev" title="POJ-2182">
+                POJ-2182 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -453,17 +452,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -478,7 +468,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">84</span>
+                <span class="site-state-item-count">184</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -500,7 +490,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">76</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -525,22 +515,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2016寒假训练——线段树"><span class="nav-number">1.</span> <span class="nav-text"> 2016寒假训练——线段树 </span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

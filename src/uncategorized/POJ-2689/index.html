@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="algorithm," />
+  <meta name="keywords" content="algorithm,math," />
 
 
 
@@ -93,17 +93,17 @@
 
 
 
-<meta name="description" content="2016春季练习——二次筛 来源：POJ2689 写了两个小时的题目，最后参考题解了。。。果然几天不写题水平下降。。。 RE的代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071">
-<meta name="keywords" content="algorithm">
+<meta name="description" content="来源：POJ2689 写了两个小时的题目，最后参考题解了。。。果然几天不写题水平下降。。。 RE的代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677#in">
+<meta name="keywords" content="algorithm,math">
 <meta property="og:type" content="article">
 <meta property="og:title" content="POJ-2689">
 <meta property="og:url" content="https://GeekOrangeLuyao.github.io/src/uncategorized/POJ-2689/index.html">
 <meta property="og:site_name" content="Orange小站">
-<meta property="og:description" content="2016春季练习——二次筛 来源：POJ2689 写了两个小时的题目，最后参考题解了。。。果然几天不写题水平下降。。。 RE的代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071">
-<meta property="og:updated_time" content="2018-04-21T18:23:09.010Z">
+<meta property="og:description" content="来源：POJ2689 写了两个小时的题目，最后参考题解了。。。果然几天不写题水平下降。。。 RE的代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677#in">
+<meta property="og:updated_time" content="2018-04-22T15:10:20.256Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="POJ-2689">
-<meta name="twitter:description" content="2016春季练习——二次筛 来源：POJ2689 写了两个小时的题目，最后参考题解了。。。果然几天不写题水平下降。。。 RE的代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071">
+<meta name="twitter:description" content="来源：POJ2689 写了两个小时的题目，最后参考题解了。。。果然几天不写题水平下降。。。 RE的代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677#in">
 
 
 
@@ -312,7 +312,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-22T02:23:08+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-22T22:25:16+08:00">
                 2018-04-22
               </time>
             
@@ -347,7 +347,7 @@
       
 
       
-        <h1 id="2016春季练习——二次筛"><a href="#2016春季练习——二次筛" class="headerlink" title=" 2016春季练习——二次筛 "></a><a href="https://blog.csdn.net/kissacm/article/details/50916760" target="_blank" rel="external"> 2016春季练习——二次筛 </a></h1><p>来源：POJ2689</p>
+        <p>来源：POJ2689</p>
 <p>写了两个小时的题目，最后参考题解了。。。果然几天不写题水平下降。。。</p>
 <p>RE的代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">50010</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> INF=<span class="number">0x7fffffff</span>;</div><div class="line"><span class="keyword">long</span> <span class="keyword">long</span> prime1[N],np1;</div><div class="line"><span class="keyword">bool</span> isp[N*<span class="number">200</span>];</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">make_p1</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">long</span> <span class="keyword">long</span> i,j;</div><div class="line">    np1=<span class="number">0</span>;</div><div class="line">    <span class="built_in">memset</span>(isp,<span class="number">1</span>,<span class="keyword">sizeof</span>(isp));</div><div class="line">    isp[<span class="number">0</span>]=isp[<span class="number">1</span>]=<span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;N;i++)&#123;</div><div class="line">        <span class="keyword">if</span>(isp[i])&#123;</div><div class="line">            np1++;</div><div class="line">            prime1[np1]=i;</div><div class="line">            <span class="keyword">for</span>(j=i*i;j&lt;N;j+=i)</div><div class="line">                isp[j]=<span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">long</span> <span class="keyword">long</span> l,u;</div><div class="line"><span class="keyword">long</span> <span class="keyword">long</span> prime2[<span class="number">1000100</span>];</div><div class="line"><span class="keyword">int</span> np2;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">make_p2</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">long</span> <span class="keyword">long</span> i,j,b;</div><div class="line">    <span class="built_in">memset</span>(isp,<span class="number">1</span>,<span class="keyword">sizeof</span>(isp));</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=np1;i++)&#123;</div><div class="line">        b=l/prime1[i];</div><div class="line">        <span class="keyword">while</span>(b*prime1[i]&lt;l||b&lt;=<span class="number">1</span>)</div><div class="line">            b++;</div><div class="line">        <span class="keyword">for</span>(j=b*prime1[i];j&lt;=u;j+=prime1[i])&#123;</div><div class="line">            <span class="keyword">if</span>(j&gt;=l)</div><div class="line">                isp[j-l]=<span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(l==<span class="number">1</span>)</div><div class="line">        isp[<span class="number">0</span>]=<span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">long</span> <span class="keyword">long</span> mina=INF,maxn=-INF;</div><div class="line">    <span class="keyword">long</span> <span class="keyword">long</span> minl,minr,maxl,maxr;</div><div class="line">    make_p2();</div><div class="line">    np2=<span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;u;i++)&#123;</div><div class="line">        <span class="keyword">if</span>(isp[i])&#123;</div><div class="line">            np2++;</div><div class="line">            prime2[np2]=i+<span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(np2&lt;=l)&#123;</div><div class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">"There are no adjacent primes."</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">        <span class="keyword">return</span> ;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;np2;i++)&#123;</div><div class="line">            <span class="keyword">if</span>(prime2[i+<span class="number">1</span>]-prime2[i]&lt;mina)&#123;</div><div class="line">                mina=prime2[i+<span class="number">1</span>]-prime2[i];</div><div class="line">                minl=prime2[i],minr=prime2[i+<span class="number">1</span>];</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>(prime2[i+<span class="number">1</span>]-prime2[i]&gt;maxn)&#123;</div><div class="line">                maxn=prime2[i+<span class="number">1</span>]-prime2[i];</div><div class="line">                maxl=prime2[i],maxr=prime2[i+<span class="number">1</span>];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%lld,%lld are closest, %lld,%lld are most distant.\n"</span>,minl,minr,maxl,maxr);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	make_p1();</div><div class="line">	<span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%lld%lld"</span>,&amp;l,&amp;u)!=EOF)&#123;</div><div class="line">        solve();</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>DEBUG没发现问题。。。真是醉了。。。主要是RE，真是不敢相信。</p>
@@ -382,6 +382,8 @@
         <div class="post-tags">
           
             <a href="/tags/algorithm/" rel="tag"># algorithm</a>
+          
+            <a href="/tags/math/" rel="tag"># math</a>
           
         </div>
       
@@ -453,17 +455,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -478,7 +471,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">84</span>
+                <span class="site-state-item-count">184</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -500,7 +493,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">76</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -525,22 +518,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2016春季练习——二次筛"><span class="nav-number">1.</span> <span class="nav-text"> 2016春季练习——二次筛 </span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
