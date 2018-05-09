@@ -1,0 +1,890 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Computation-Intelligence,PSO," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="粒子群算法实验————解决TSP问题 本报告使用粒子群算法解决TSP问题  1. 实验背景旅行商问题，即TSP问题（Traveling Salesman Problem），也叫旅行推销员问题、货郎担问题，是数学领域中著名问题之一。假设有一个旅行商人要拜访n个城市，他必须选择所要走的路径，路径的限制是每个城市只能拜访一次，而且最后要回到原来出发的城市。路径的选择目标是要求得的路径路程为所有路径之中的">
+<meta name="keywords" content="Computation-Intelligence,PSO">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PSO_TSP">
+<meta property="og:url" content="https://GeekOrangeLuyao.github.io/src/uncategorized/PSO-TSP/index.html">
+<meta property="og:site_name" content="OrangeLuyao的小站">
+<meta property="og:description" content="粒子群算法实验————解决TSP问题 本报告使用粒子群算法解决TSP问题  1. 实验背景旅行商问题，即TSP问题（Traveling Salesman Problem），也叫旅行推销员问题、货郎担问题，是数学领域中著名问题之一。假设有一个旅行商人要拜访n个城市，他必须选择所要走的路径，路径的限制是每个城市只能拜访一次，而且最后要回到原来出发的城市。路径的选择目标是要求得的路径路程为所有路径之中的">
+<meta property="og:updated_time" content="2018-05-09T18:43:51.948Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PSO_TSP">
+<meta name="twitter:description" content="粒子群算法实验————解决TSP问题 本报告使用粒子群算法解决TSP问题  1. 实验背景旅行商问题，即TSP问题（Traveling Salesman Problem），也叫旅行推销员问题、货郎担问题，是数学领域中著名问题之一。假设有一个旅行商人要拜访n个城市，他必须选择所要走的路径，路径的限制是每个城市只能拜访一次，而且最后要回到原来出发的城市。路径的选择目标是要求得的路径路程为所有路径之中的">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://GeekOrangeLuyao.github.io/src/uncategorized/PSO-TSP/"/>
+
+
+
+
+
+  <title>PSO_TSP | OrangeLuyao的小站</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+      <div class="site-meta-headline">
+        <a>
+          <img class="custom-logo-image" src="/images/aaa.jpg"
+               alt="OrangeLuyao的小站"/>
+        </a>
+      </div>
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">OrangeLuyao的小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">The world is a fine place, and worth fighting for.I agree with the second part.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/uncategorized/PSO-TSP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OrangeLuYao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OrangeLuyao的小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">PSO_TSP</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-10T02:41:04+08:00">
+                2018-05-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="粒子群算法实验————解决TSP问题"><a href="#粒子群算法实验————解决TSP问题" class="headerlink" title="粒子群算法实验————解决TSP问题"></a>粒子群算法实验————解决TSP问题</h2><blockquote>
+<p>本报告使用粒子群算法解决TSP问题</p>
+</blockquote>
+<h3 id="1-实验背景"><a href="#1-实验背景" class="headerlink" title="1. 实验背景"></a>1. 实验背景</h3><p>旅行商问题，即TSP问题（Traveling Salesman Problem），也叫旅行推销员问题、货郎担问题，是数学领域中著名问题之一。假设有一个旅行商人要拜访n个城市，他必须选择所要走的路径，路径的限制是每个城市只能拜访一次，而且最后要回到原来出发的城市。路径的选择目标是要求得的路径路程为所有路径之中的最小值。</p>
+<p>旅行推销员问题是图论中最著名的问题之一，即“已给一个n个点的完全图，每条边都有一个长度，求总长度最短的经过每个顶点正好一次的封闭回路”。Edmonds，Cook和Karp等人发现，这批难题有一个值得注意的性质，对其中一个问题存在有效算法时，每个问题都会有有效算法。</p>
+<p>迄今为止，这类问题中没有一个找到有效算法。倾向于接受NP完全问题（NP-Complete或NPC）和NP难题（NP-Hard或NPH）不存在有效算法这一猜想，认为这类问题的大型实例不能用精确算法求解，必须寻求这类问题的有效的近似算法。</p>
+<h3 id="2-粒子群算法"><a href="#2-粒子群算法" class="headerlink" title="2. 粒子群算法"></a>2. 粒子群算法</h3><h4 id="2-1-算法简介"><a href="#2-1-算法简介" class="headerlink" title="2.1 算法简介"></a>2.1 算法简介</h4><p>粒子群算法，也称粒子群优化算法或鸟群觅食算法（Particle Swarm Optimization），缩写为 PSO。PSO 算法属于进化算法的一种，和模拟退火算法相似，它也是从随机解出发，通过迭代寻找最优解，它也是通过适应度来评价解的品质，但它比遗传算法规则更为简单，它没有遗传算法的“交叉”(Crossover) 和“变异”(Mutation) 操作，它通过追随当前搜索到的最优值来寻找全局最优。这种算法以其实现容易、精度高、收敛快等优点引起了学术界的重视，并且在解决实际问题中展示了其优越性。粒子群算法是一种并行算法。</p>
+<p>PSO模拟鸟群的捕食行为。设想这样一个场景：一群鸟在随机搜索食物。在这个区域里只有一块食物。所有的鸟都不知道食物在那里。但是他们知道当前的位置离食物还有多远。那么找到食物的最优策略是什么呢。最简单有效的就是搜寻目前离食物最近的鸟的周围区域。</p>
+<p>PSO从这种模型中得到启示并用于解决优化问题。PSO中，每个优化问题的解都是搜索空间中的一只鸟。我们称之为“粒子”。所有的粒子都有一个由被优化的函数决定的适应值(fitness value)，每个粒子还有一个速度决定他们飞翔的方向和距离。然后粒子们就追随当前的最优粒子在解空间中搜索。</p>
+<p>PSO 初始化为一群随机粒子(随机解)。然后通过迭代找到最优解。在每一次迭代中，粒子通过跟踪两个”极值”来更新自己。第一个就是粒子本身所找到的最优解，这个解叫做个体极值pBest。另一个极值是整个种群目前找到的最优解，这个极值是全局极值gBest。另外也可以不用整个种群而只是用其中一部分作为粒子的邻居，那么在所有邻居中的极值就是局部极值。</p>
+<h4 id="2-2-算法结合TSP"><a href="#2-2-算法结合TSP" class="headerlink" title="2.2 算法结合TSP"></a>2.2 算法结合TSP</h4><p>由于TSP是离散问题,所以普通的PSO方法无法使用,必须使用广义的PSO算法.</p>
+<p>广义粒子群算法模型和遗传算法相当类似，目前网上有关于粒子群算法求解TSP的很多论文或代码都是基于广义粒子群算法的，说简单点就是进化思想，用交叉变异代替了基本粒子群算法的迭代公式，当然他们也还是有粒子群优化的本质思想的，如与全局最优编码交叉，与局部最优编码交叉，变异等都是源自于基本粒子群算法的迭代公式。</p>
+<p>在这样的背景下,我们设计了独特的速度更新公式,利用概率来作为参数调整的方式,使得原有的公式可以继续扩展的使用.</p>
+<p>具体算法详见设计细节</p>
+<h3 id="3-算法设计流程"><a href="#3-算法设计流程" class="headerlink" title="3. 算法设计流程"></a>3. 算法设计流程</h3><h4 id="3-1-算法流程图"><a href="#3-1-算法流程图" class="headerlink" title="3.1 算法流程图"></a>3.1 算法流程图</h4><p>如下图所示:</p>
+<h4 id="3-2-算法实现过程"><a href="#3-2-算法实现过程" class="headerlink" title="3.2 算法实现过程"></a>3.2 算法实现过程</h4><p>使用python3作为设计语言，其中本次使用的版本是python3.6，其中使用了常规的的库有：</p>
+<ol>
+<li>time</li>
+<li>copy</li>
+<li>random</li>
+<li>math</li>
+</ol>
+<p>使用的非内置库有：</p>
+<ol>
+<li>numpy</li>
+<li>matplotlib</li>
+</ol>
+<h5 id="3-2-1-算法公式"><a href="#3-2-1-算法公式" class="headerlink" title="3.2.1 算法公式"></a>3.2.1 算法公式</h5><blockquote>
+<p>PSO 算法包含的公式有：</p>
+<ol>
+<li>速度更新公式</li>
+<li>位置更新公式<br>由于是在离散场景下的实际应用问题，所以这里还需要改变部分以适应TSP问题的要求</li>
+</ol>
+</blockquote>
+<ol>
+<li>速度更新公式<br>$$V<em>{id}^{k+1} = V</em>{id}^{k} + c<em>1 <em> \eta </em> (p</em>{id}^{k} - x_{id}^{k}) + c<em>2 <em> \xi </em> (p</em>{gd}^{k} - x_{id}^{k})$$</li>
+</ol>
+<ul>
+<li>下标id 表示群体id</li>
+<li>k 表示的是迭代次数</li>
+<li>c1,c2是学习因子</li>
+<li>$\eta$,$\xi \in [0,1]$</li>
+<li>$p_{id}$表示本个体的历史最优</li>
+<li>$p_{gd}$表示本群体的最优</li>
+</ul>
+<ol>
+<li><p>位置更新公式<br>$$x<em>{id}^{k+1} = x</em>{id}^{k} + v_{id}^{k+1}$$<br>利用加操作，这样的操作就可以</p>
+</li>
+<li><p>与TSP问题协调<br>以上公式为PSO的经典计算公式，但是在结合TSP问题中，同时出现了如下问题：</p>
+</li>
+</ol>
+<ul>
+<li>编码要求中无法使用浮点数为TSP问题编码</li>
+<li>TSP问题无法进行直接速度相加</li>
+</ul>
+<p>为了解决以上的问题，在处理过程中使用了一定的变通的手法：</p>
+<blockquote>
+<p>粒子群本质上是使用历史最好和群体最好的结果来不断优化群体，而其速度就是定义为更新某个群体的方式<br>在顺序编码中最好的更新方式就是对于数据位置的交换，因在，在次数的更新速度我们定义为以一定的概率接受某两个位置的交换。<br>也就是说，以概率的方式解释上述的速度更新公式和位置更新公式。</p>
+</blockquote>
+<p>具体的处理方式和代码参见下一节</p>
+<h5 id="3-2-2-算法设计细节"><a href="#3-2-2-算法设计细节" class="headerlink" title="3.2.2 算法设计细节"></a>3.2.2 算法设计细节</h5><ol>
+<li>TSP处理<br>首先需要定义图本身<br>首先定义一个点类<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x, y)</span>:</span></div><div class="line">        self.x = x</div><div class="line">        self.y = y</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>随后定义图类，注意到其中的<code>ask_distance_for_plan()</code>方法，这样就可以直接用这个图对于一个可能的序列获取改方案的结果.<br><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Graph</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, n)</span>:</span></div><div class="line">        self.points = []</div><div class="line">        self.point_n = n</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add_point</span><span class="params">(self, p)</span>:</span></div><div class="line">        self.points.append(p)</div><div class="line">        self.point_n += <span class="number">1</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">ask_distance</span><span class="params">(self, i, j)</span>:</span></div><div class="line">        point_x = self.points[i]</div><div class="line">        point_y = self.points[j]</div><div class="line">        <span class="keyword">return</span> math.sqrt(sqr(point_x.x - point_y.x) + sqr(point_x.y - point_y.y))</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">ask_distance_for_plan</span><span class="params">(self, plan)</span>:</span></div><div class="line">        res = <span class="number">0.0</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, self.point_n):</div><div class="line">            res += self.ask_distance(plan[i], plan[i - <span class="number">1</span>])</div><div class="line">        res += self.ask_distance(plan[<span class="number">0</span>], plan[self.point_n - <span class="number">1</span>])</div><div class="line">        <span class="comment"># print(plan,' ',res)</span></div><div class="line">        <span class="keyword">return</span> res</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">show</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> self.points:</div><div class="line">            print(item.x, <span class="string">" "</span>, item.y)</div></pre></td></tr></table></figure></p>
+<ol>
+<li>定义Swarm类<br>下面定义粒子群类,需要的属性是:</li>
+</ol>
+<ul>
+<li>当前的方案</li>
+<li>当前的方案结构</li>
+<li>历史最优方案</li>
+<li>历史最优方案的结果<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Swarm</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, plan)</span>:</span></div><div class="line">        self.plan = copy.copy(plan)</div><div class="line">        self.fitness = <span class="number">0.0</span></div><div class="line">        self.best = <span class="number">0.0</span></div><div class="line">        self.best_plan = []</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol>
+<li>定义PSO类<br>下面定义PSO类<br>为了保证代码设计的完整性,所以这里的解释在注释中:<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">PSO</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">        构造函数,实际上设置基础参数</div><div class="line">        max_group 表示群体个数</div><div class="line">        max_time 表示最大迭代次数</div><div class="line">        c1,c2表示学习银子</div><div class="line">    """</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, max_group=<span class="number">100</span>, max_time=<span class="number">1000</span>, c1=<span class="number">1</span>, c2=<span class="number">1</span>)</span>:</span></div><div class="line">        self.MAX_TIME = max_time</div><div class="line">        self.MAX_GROUP = max_group</div><div class="line">        self.c1 = c1</div><div class="line">        self.c2 = c2</div><div class="line"></div><div class="line">    <span class="string">"""</span></div><div class="line">        给定向量的大小,返回一个不重复的随机向量</div><div class="line">    """</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">init_plan</span><span class="params">(self, n)</span>:</span></div><div class="line">        <span class="comment"># 设置随机数种子</span></div><div class="line">        random.seed(time.time())</div><div class="line">        init_plan = []</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, n):</div><div class="line">            init_plan.append(i)</div><div class="line"></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</div><div class="line">            <span class="comment"># 随机两个不相同的数字</span></div><div class="line">            j = random.randint(<span class="number">0</span>, n - <span class="number">1</span>)</div><div class="line">            <span class="keyword">while</span> i == j:</div><div class="line">                j = random.randint(<span class="number">0</span>, n - <span class="number">1</span>)</div><div class="line">            init_plan[i], init_plan[j] = init_plan[j], init_plan[i]</div><div class="line"></div><div class="line">        <span class="keyword">return</span> init_plan</div><div class="line"></div><div class="line">    <span class="string">"""</span></div><div class="line">        给定群体大小,返回所获得的拥有不相同的数据的群体</div><div class="line">    """</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">init_group</span><span class="params">(self, n, graph)</span>:</span></div><div class="line">        group = []</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(self.MAX_GROUP):</div><div class="line">            new_plan = self.init_plan(n)</div><div class="line"></div><div class="line">            <span class="keyword">while</span> new_plan <span class="keyword">in</span> group:</div><div class="line">                new_plan = self.init_plan(n)</div><div class="line">            group.append(new_plan)</div><div class="line"></div><div class="line">        <span class="keyword">return</span> group</div><div class="line"></div><div class="line">    <span class="string">"""</span></div><div class="line">        实际的运行函数</div><div class="line">        传入的数据是:</div><div class="line">            * 群体数据</div><div class="line">            * 群体图本身</div><div class="line">    """ </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self, n, graph)</span>:</span></div><div class="line">        <span class="comment"># 设置随机数种子</span></div><div class="line">        random.seed(time.time())</div><div class="line">        group = self.init_group(n, graph)</div><div class="line"></div><div class="line">        <span class="comment"># 获取初始群体</span></div><div class="line">        swarms = []</div><div class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> group:</div><div class="line">            tmp = Swarm(item)</div><div class="line">            tmp.fitness = graph.ask_distance_for_plan(item)</div><div class="line">            tmp.best = graph.ask_distance_for_plan(item)</div><div class="line">            tmp.best_plan = copy.copy(tmp.plan)</div><div class="line">            tmp.speed = self.init_plan(n)</div><div class="line">            swarms.append(tmp)</div><div class="line"></div><div class="line">        i_time = <span class="number">0</span></div><div class="line"></div><div class="line">        <span class="comment"># 最优值记录</span></div><div class="line">        swarm_best = &#123;</div><div class="line">            <span class="string">"fitness"</span>: swarms[<span class="number">0</span>].fitness,</div><div class="line">            <span class="string">"plan"</span>: copy.copy(swarms[<span class="number">0</span>].plan)</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">while</span> i_time &lt; self.MAX_TIME:</div><div class="line"></div><div class="line">            <span class="comment"># 首先对于所有的个体进行更新</span></div><div class="line">            <span class="keyword">for</span> bird <span class="keyword">in</span> swarms:</div><div class="line">                bird.fitness = graph.ask_distance_for_plan(bird.plan)</div><div class="line">                <span class="keyword">if</span> bird.fitness &lt; bird.best:</div><div class="line">                    bird.best_plan = copy.copy(bird.plan)</div><div class="line">                    bird.best = bird.fitness</div><div class="line"></div><div class="line">                <span class="keyword">if</span> bird.best &lt; swarm_best[<span class="string">"fitness"</span>]:</div><div class="line">                    swarm_best[<span class="string">"fitness"</span>] = bird.best</div><div class="line">                    swarm_best[<span class="string">"plan"</span>] = copy.copy(bird.plan)</div><div class="line"></div><div class="line">            print(swarm_best)</div><div class="line">            </div><div class="line">            <span class="comment"># 注意这个就是速度更新</span></div><div class="line">            <span class="comment"># 存储的是交换的位置操作以满足不重复性</span></div><div class="line">            <span class="comment"># 同时通过概率的方式方式保存前面的接受常数的概念</span></div><div class="line">            temp_speed = []</div><div class="line"></div><div class="line">            <span class="comment"># 更新每个粒子</span></div><div class="line">            <span class="keyword">for</span> bird <span class="keyword">in</span> swarms:</div><div class="line">                temp_speed.clear()</div><div class="line"></div><div class="line">                <span class="comment"># print(bird.plan)</span></div><div class="line">                <span class="comment"># 设置eta,xi</span></div><div class="line">                <span class="comment"># 这个地方也可以设置乘全局的,也就是粒子群本身的属性中</span></div><div class="line">                eta = <span class="number">0.9</span></div><div class="line">                xi = <span class="number">0.85</span></div><div class="line"></div><div class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</div><div class="line">                    <span class="keyword">if</span> bird.plan[i] != swarm_best[<span class="string">"plan"</span>][i]:</div><div class="line">                        <span class="comment"># 存储的是</span></div><div class="line">                        <span class="comment">#   (i,j,p)</span></div><div class="line">                        <span class="comment">#   i,j,分别表示要交换的位置</span></div><div class="line">                        <span class="comment">#   p表示接受的概率</span></div><div class="line">                        swap_operator = (i, swarm_best[<span class="string">"plan"</span>].index(bird.plan[i]), eta)</div><div class="line">                        temp_speed.append(swap_operator)</div><div class="line">                        u = swap_operator[<span class="number">0</span>]</div><div class="line">                        v = swap_operator[<span class="number">1</span>]</div><div class="line">                        bird.plan[u], bird.plan[v] = bird.plan[v], bird.plan[u]</div><div class="line"></div><div class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</div><div class="line">                    <span class="keyword">if</span> bird.plan[i] != bird.best_plan[i]:</div><div class="line">                        swap_operator = (i, bird.best_plan.index(bird.plan[i]), xi)</div><div class="line">                        temp_speed.append(swap_operator)</div><div class="line">                        u = swap_operator[<span class="number">0</span>]</div><div class="line">                        v = swap_operator[<span class="number">1</span>]</div><div class="line">                        bird.plan[u], bird.plan[v] = bird.plan[v], bird.plan[u]</div><div class="line"></div><div class="line">                <span class="comment"># 下面是用一个随机的变量来判断是否接受交换</span></div><div class="line">                <span class="keyword">for</span> item <span class="keyword">in</span> temp_speed:</div><div class="line">                    rate = random.random()</div><div class="line">                    <span class="keyword">if</span> rate &lt;= item[<span class="number">2</span>]:</div><div class="line">                        u = item[<span class="number">0</span>]</div><div class="line">                        v = item[<span class="number">1</span>]</div><div class="line">                        bird.plan[u], bird.plan[v] = bird.plan[v], bird.plan[u]</div><div class="line"></div><div class="line">                <span class="comment"># 为了保证不会落入到历史最优解中不出来,会给出变异操作,以构造出其他解</span></div><div class="line">                <span class="keyword">if</span> bird.plan == swarm_best[<span class="string">"plan"</span>]:</div><div class="line">                    u = random.randint(<span class="number">0</span>, n - <span class="number">1</span>)</div><div class="line">                    v = random.randint(<span class="number">0</span>, n - <span class="number">1</span>)</div><div class="line">                    <span class="keyword">while</span> v == u:</div><div class="line">                        v = random.randint(<span class="number">0</span>, n - <span class="number">1</span>)</div><div class="line">                    bird.plan[u], bird.plan[v] = bird.plan[v], bird.plan[u]</div><div class="line"></div><div class="line">            i_time += <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> swarm_best</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="4-实验结果"><a href="#4-实验结果" class="headerlink" title="4. 实验结果"></a>4. 实验结果</h3><h4 id="4-1-实验数据"><a href="#4-1-实验数据" class="headerlink" title="4.1 实验数据"></a>4.1 实验数据</h4><p>使用的实验数据如下：<br>给出所有点的坐标<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">A 2.5 4.0</div><div class="line">B 1.2 -2.4</div><div class="line">C 8.7 1.2</div><div class="line">D 3.6 12.1</div><div class="line">E -5.5 0.94</div><div class="line">F -6.6 -12.6</div><div class="line">G 0.18 5.219</div><div class="line">H 12.5 14.3609</div><div class="line">I 22.5 -5.26</div><div class="line">J 1.61 4.5</div><div class="line">K 2.1 -5.6</div><div class="line">L 0 25</div><div class="line">M 9.2 -32</div><div class="line">N -1 7</div><div class="line">O -5 -8</div><div class="line">P 21 35</div><div class="line">Q 16 7.5</div><div class="line">R -21 5</div><div class="line">S -7 -25.5</div><div class="line">T 12 17.5</div></pre></td></tr></table></figure></p>
+<p>给出读入数据的python代码：<br><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">graph = Graph(<span class="number">0</span>)</div><div class="line"><span class="keyword">with</span> open(<span class="string">"in.txt"</span>,<span class="string">"r"</span>) <span class="keyword">as</span> f:</div><div class="line">    lines = f.readlines()</div><div class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> lines:</div><div class="line">        line = str(line)</div><div class="line">        <span class="comment"># print(line)</span></div><div class="line">        items = line.split(<span class="string">' '</span>)</div><div class="line">        x = float(items[<span class="number">1</span>])</div><div class="line">        y = float(items[<span class="number">2</span>])</div><div class="line">        <span class="comment"># print('x =',x,' y = ',y)</span></div><div class="line">        graph.add_point(Point(x,y))</div></pre></td></tr></table></figure></p>
+<h4 id="4-2-实验结果展示"><a href="#4-2-实验结果展示" class="headerlink" title="4.2 实验结果展示"></a>4.2 实验结果展示</h4><p>最终运行的结果:<br><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;<span class="string">'fitness'</span>: <span class="number">224.6515394977227</span>, <span class="string">'plan'</span>: [<span class="number">5</span>, <span class="number">14</span>, <span class="number">10</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">17</span>, <span class="number">13</span>, <span class="number">6</span>, <span class="number">9</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">11</span>, <span class="number">15</span>, <span class="number">19</span>, <span class="number">7</span>, <span class="number">16</span>, <span class="number">8</span>, <span class="number">12</span>, <span class="number">18</span>]&#125;</div></pre></td></tr></table></figure></p>
+<p>也就是有图:</p>
+<h4 id="4-2-实验结果分析"><a href="#4-2-实验结果分析" class="headerlink" title="4.2 实验结果分析"></a>4.2 实验结果分析</h4><h5 id="4-2-1迭代次数对于最终结果的影响"><a href="#4-2-1迭代次数对于最终结果的影响" class="headerlink" title="4.2.1迭代次数对于最终结果的影响"></a>4.2.1迭代次数对于最终结果的影响</h5><p>记录生成过程中的结果:</p>
+<p>可以看到的是,粒子群在一开始的下降中是非常迅速的.所以在迭代次数相同的状态下,往往粒子群算法会有一个不错的结果.</p>
+<h5 id="4-2-2-改变接受率对于最终结果的影响"><a href="#4-2-2-改变接受率对于最终结果的影响" class="headerlink" title="4.2.2 改变接受率对于最终结果的影响"></a>4.2.2 改变接受率对于最终结果的影响</h5><p>在原来的例子中,我们的的接受率取的是固定的$\eta = 0.85,\xi = 0.9$,我们改变这个值的组合:<br>我们分别探究其组合对于其数值的影响.</p>
+<p>我们计算如下的集合的结果的组合并绘制三维图像:<br><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">eta = [<span class="number">0.09</span>, <span class="number">0.19</span>, <span class="number">0.29</span>, <span class="number">0.39</span>, <span class="number">0.49</span>, <span class="number">0.59</span>, <span class="number">0.69</span>, <span class="number">0.79</span>, <span class="number">0.89</span>, <span class="number">0.99</span>]</div><div class="line">xi = [<span class="number">0.09</span>, <span class="number">0.19</span>, <span class="number">0.29</span>, <span class="number">0.39</span>, <span class="number">0.49</span>, <span class="number">0.59</span>, <span class="number">0.69</span>, <span class="number">0.79</span>, <span class="number">0.89</span>, <span class="number">0.99</span>]</div></pre></td></tr></table></figure></p>
+<p>最终的结果为:<br>可以看出在向群体最优解方向的更新受限制的时候,结果会出现明显变差的结果,也就是说向群体最优解靠近比向自己的结果靠近在TSP问题中显得更加重要,这也说明了PSO的优越性在于了这两种更新方式的综合</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Computation-Intelligence/" rel="tag"># Computation-Intelligence</a>
+          
+            <a href="/tags/PSO/" rel="tag"># PSO</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/src/uncategorized/GA-TSP/" rel="next" title="GA_TSP">
+                <i class="fa fa-chevron-left"></i> GA_TSP
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/src/uncategorized/SA-TSP/" rel="prev" title="SA_TSP">
+                SA_TSP <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="OrangeLuYao" />
+          <p class="site-author-name" itemprop="name">OrangeLuYao</p>
+           
+              <p class="site-description motion-element" itemprop="description">深自缄默，如云漂泊</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">189</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">72</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="mailto:OrangeLuyao@outlook.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  E-Mail
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://space.bilibili.com/36409945/#/" target="_blank" title="Bilibili">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Bilibili
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/leo-40-71/activities" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              My Other Blogs
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://blog.csdn.net/kissacm" title="CSDN" target="_blank">CSDN</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://geekvitaminc.github.io/" title="GeekVitaminC" target="_blank">GeekVitaminC</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#粒子群算法实验————解决TSP问题"><span class="nav-number">1.</span> <span class="nav-text">粒子群算法实验————解决TSP问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-实验背景"><span class="nav-number">1.1.</span> <span class="nav-text">1. 实验背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-粒子群算法"><span class="nav-number">1.2.</span> <span class="nav-text">2. 粒子群算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-算法简介"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 算法简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-算法结合TSP"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 算法结合TSP</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-算法设计流程"><span class="nav-number">1.3.</span> <span class="nav-text">3. 算法设计流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-算法流程图"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 算法流程图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-算法实现过程"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 算法实现过程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-1-算法公式"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">3.2.1 算法公式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-2-算法设计细节"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">3.2.2 算法设计细节</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-实验结果"><span class="nav-number">1.4.</span> <span class="nav-text">4. 实验结果</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-实验数据"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1 实验数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-实验结果展示"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2 实验结果展示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-实验结果分析"><span class="nav-number">1.4.3.</span> <span class="nav-text">4.2 实验结果分析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-1迭代次数对于最终结果的影响"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">4.2.1迭代次数对于最终结果的影响</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-2-改变接受率对于最终结果的影响"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">4.2.2 改变接受率对于最终结果的影响</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">OrangeLuYao</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
