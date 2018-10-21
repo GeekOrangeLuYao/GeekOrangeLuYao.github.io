@@ -382,8 +382,9 @@
 <h3 id="4-2-SIMPLE-UNSMOOTHED-N-GRAMS"><a href="#4-2-SIMPLE-UNSMOOTHED-N-GRAMS" class="headerlink" title="4.2 SIMPLE (UNSMOOTHED) N-GRAMS"></a>4.2 SIMPLE (UNSMOOTHED) N-GRAMS</h3><p>We assume that the reader has acquired some very basic background in probability theory. Our goal is to compute the probability of a word w given some history h, or P(w|h).<br>Suppose the history h is “its water is so transparent that” and we want to know the probability that the next word is the:<br>$$P(the|its water is so transparent that)$$</p>
 <p> One way is to estimate it from relative frequency counts:</p>
 <ol>
-<li>For example, we could take a very large corpus, count the number of times we see the water is so transparent that, and count the number of times this is followed by the.<br>也就是直接硬算<br>$$ P(the|its water is so transparent that) = \frac {C(its water is so transparent that the)}{ C(its water is so transparent that) }$$<br>With a large enough corpus, such as the web, we can compute these counts, and estimate the probability from Equation<br>但是数据集显然不可能足够完成这个结果</li>
+<li>For example, we could take a very large corpus, count the number of times we see the water is so transparent that, and count the number of times this is followed by the.</li>
 </ol>
+<p>也就是直接硬算<br>$$ P(the|its water is so transparent that) = \frac {C(its water is so transparent that the)}{ C(its water is so transparent that) }$$<br>With a large enough corpus, such as the web, we can compute these counts, and estimate the probability from Equation<br>但是数据集显然不可能足够完成这个结果</p>
 <p>For this reason, we’ll need to introduce cleverer ways of estimating the probability of a word w given a history h, or the probability of an entire word sequence W.</p>
 <p>注意表示一个$w_1…w_n$是使用$w_1^n$<br>因此对于一个句子是:<br>$$P(w_1^n) = P(w_1) P(w_2 | w_1) … P(w_n|w_1^{n-1})$$<br>We don’t know any way to compute the exact probability of a word given a long sequence of preceding words, $P(w_n|w^{n-1}_1)$.<br>为了避免搜索整个句子太大了，所以认为一个词只与前面几个词有关系</p>
 <p>其中bi-gram表示只用前面一个词（binary），这个时候我们认为$P(w|w_1^{n-1}) =    P(w<em>n | w</em>{n-1})$<br>这就是Markov 假设（数学之美啥的都看过了）</p>
@@ -405,7 +406,6 @@
 <p>Although we will generally show bi-gram models in this chapter for pedagogical purposes, note that when there is sufﬁcient training data we are more likely to use tri-gram models, which condition on the previous two words rather than the previous TRI-GRAM word. To compute tri-gram probabilities at the very beginning of sentence, we can use two pseudo-words for the ﬁrst trigram.</p>
 </blockquote>
 <p>有的时候也是用三个单词的</p>
-<p>#</p>
 <h3 id="4-3-TRAINING-AND-TEST-SETS"><a href="#4-3-TRAINING-AND-TEST-SETS" class="headerlink" title="4.3 TRAINING AND TEST SETS"></a>4.3 TRAINING AND TEST SETS</h3><p>讲了一些train - test 的数据集划分的问题，没啥意思</p>
 <blockquote>
 <p>There is is a useful metric for how well a given statistical model matches a test corpus, called perplexity<br>注意测试数据不能包含在训练数据中</p>
@@ -435,7 +435,9 @@
 <p>end-to-end evaluation is often very expensive</p>
 <p><strong>Perplexity</strong> is the most common intrinsic evaluation metric for N-gram language models.<br>The intuition of perplexity is that given two probabilistic models, the better model is the one that has a tighter ﬁt to the test data, or predicts the details of the test data better. </p>
 <p> the perplexity (sometimes called PP for short)</p>
-<p>定义：<br>$$PP(w) = P(w1…w_n)^{-\frac{1}{N}} = \sqrt[N]{\frac{1}{P(w_1…w<em>n)}}$$<br>在使用链式法则的情况下，对于bi-gram的结果显然是：<br>$$PP(W) = \sqrt[N]{\prod</em>{i=1}^N \frac{1}{p(w<em>i|w</em>{i-1})}}$$</p>
+<p>定义：<br>$$PP(w) = P(w1…w_n)^{-\frac{1}{N}} = \sqrt[N]{\frac{1}{P(w_1…w_n)}}$$</p>
+<p>在使用链式法则的情况下，对于bi-gram的结果显然是：</p>
+<p>$$PP(W) = \sqrt[N]{\prod_{i=1}^N \frac{1}{p(w<em>i|w</em>{i-1})}}$$</p>
 <p>显然有越高的状态可能性，其PP值越低<br>There is another way to think about perplexity: as the weighted average branching factor(加权平均分支系数) of a language.<br>The branching factor of a language is the number of possible next words that can follow any word.</p>
 <p>Perplexity可以认为是average branch factor（平均分支系数），即预测下一个词时可以有多少种选择。别人在作报告时说模型的PPL下降到90，可以直观地理解为，在模型生成一句话时下一个词有90个合理选择，可选词数越少，我们大致认为模型越准确。这样也能解释，为什么PPL越小，模型越好。</p>
 <p>perplexity is also closely related to the information theoretic notion of entropy.<br>使用closed vocabulary可以非常好的降低pp。</p>
