@@ -283,6 +283,348 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/uncategorized/Speech-and-Language-Processing-笔记-之-Ngram/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OrangeLuYao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OrangeLuyao的小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/src/uncategorized/Speech-and-Language-Processing-笔记-之-Ngram/" itemprop="url">Speech and Language Processing 笔记 之 Ngram</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-21T20:49:48+08:00">
+                2018-10-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>[TOC]</p>
+<h1 id="Speech-and-Language-Processing-笔记之-Ngram"><a href="#Speech-and-Language-Processing-笔记之-Ngram" class="headerlink" title="Speech and Language Processing 笔记之 Ngram"></a>Speech and Language Processing 笔记之 Ngram</h1><blockquote>
+<p>单纯的只是列出一些要点</p>
+</blockquote>
+<h2 id="4-N-grams"><a href="#4-N-grams" class="headerlink" title="4. N-grams"></a>4. N-grams</h2><blockquote>
+<p>We formalize this idea of word prediction with probabilistic WORD PREDICTION models called N-gram models, which predict the next word from the previous N −1N -GRAM MODELS words. Such statistical models of word sequences are also called language models or LANGUAGE MODELS LMs. Computing the probability of the next word will turn out to be closely related LMs to computing the probability of a sequence of words</p>
+</blockquote>
+<p>N-grams 在机器翻译中也可以发挥一定的作用，比如可以在几个待选的翻译中进行验证。除此之外，单词拼写等等问题也可以归结到这个问题中间解决。</p>
+<p>Besides these sample areas, N-grams are also crucial in NLP tasks like part-ofspeech tagging, natural language generation, and word similarity, as well as in applications from authorship identiﬁcation and sentiment extraction to predictive text input systems for cell phones</p>
+<h3 id="4-1-COUNTING-WORDS-IN-CORPORA"><a href="#4-1-COUNTING-WORDS-IN-CORPORA" class="headerlink" title="4.1   COUNTING WORDS IN CORPORA"></a>4.1   COUNTING WORDS IN CORPORA</h3><blockquote>
+<p>corpus 语料库  (plural corpora) an on-line collection of text or speech.<br>两个经典的语料库 Brown and Switchboard<br>punctuation 标点符号</p>
+</blockquote>
+<p>下面是语料中的一些说明：</p>
+<ol>
+<li>标点符号是是否被记录需要根据情况</li>
+</ol>
+<blockquote>
+<p>disﬂuencies 不流利(怎么感觉没这个词啊)</p>
+</blockquote>
+<ol>
+<li>有一些碎片和语气填充词<br>语气词的使用往往可以用于表征人的内心想法，比如疑虑等等。有些时候甚至会提高next prediction的成功率</li>
+<li>首字母不同的情况下一般认为是一个词，但是也有特殊情况</li>
+<li>单复数的问题使用word-form解释了一波，应该是只要表达的意思没有区别就一致</li>
+</ol>
+<p>As we can see, N-gram models, and counting words in general, requires that we do the kind of tokenization or text normalization that we introduced in the previous chapter: separating out punctuation, dealing with abbreviations like m.p.h., normalizing spelling, and so on. </p>
+<blockquote>
+<p>types 语料库中的单词个数 V<br>tokens 正在使用的单词个数 N<br>boldface forms<br>一般有$V &gt; \sqrt{N}$</p>
+</blockquote>
+<h3 id="4-2-SIMPLE-UNSMOOTHED-N-GRAMS"><a href="#4-2-SIMPLE-UNSMOOTHED-N-GRAMS" class="headerlink" title="4.2 SIMPLE (UNSMOOTHED) N-GRAMS"></a>4.2 SIMPLE (UNSMOOTHED) N-GRAMS</h3><p>We assume that the reader has acquired some very basic background in probability theory. Our goal is to compute the probability of a word w given some history h, or P(w|h).<br>Suppose the history h is “its water is so transparent that” and we want to know the probability that the next word is the:<br>$$P(the|its water is so transparent that)$$</p>
+<p> One way is to estimate it from relative frequency counts:</p>
+<ol>
+<li>For example, we could take a very large corpus, count the number of times we see the water is so transparent that, and count the number of times this is followed by the.<br>也就是直接硬算<br>$$ P(the|its water is so transparent that) = \frac {C(its water is so transparent that the)}{ C(its water is so transparent that) }$$<br>With a large enough corpus, such as the web, we can compute these counts, and estimate the probability from Equation<br>但是数据集显然不可能足够完成这个结果</li>
+</ol>
+<p>For this reason, we’ll need to introduce cleverer ways of estimating the probability of a word w given a history h, or the probability of an entire word sequence W.</p>
+<p>注意表示一个$w_1…w_n$是使用$w_1^n$<br>因此对于一个句子是:<br>$$P(w_1^n) = P(w_1) P(w_2 | w_1) … P(w_n|w_1^{n-1})$$<br>We don’t know any way to compute the exact probability of a word given a long sequence of preceding words, $P(w_n|w^{n-1}_1)$.<br>为了避免搜索整个句子太大了，所以认为一个词只与前面几个词有关系</p>
+<p>其中bi-gram表示只用前面一个词（binary），这个时候我们认为$P(w|w_1^{n-1}) =    P(w<em>n | w</em>{n-1})$<br>这就是Markov 假设（数学之美啥的都看过了）</p>
+<blockquote>
+<p>This assumption that the probability of a word depends only on the previous word is called a Markov assumption. Markov models are the class of probabilistic models MARKOV that assume that we can predict the probability of some future unit without looking too far into the past. We can generalize the bi-gram</p>
+</blockquote>
+<p>转化之后的问题就变成了:<br>How do we estimate these bi-gram or N-gram probabilities? The simplest and most intuitive way to estimate probabilities is called Maximum Likelihood Estimation, or MLE. </p>
+<p>We get the MLE estimate for the parameters of an N-gram model by taking MLE counts from a corpus, and normalizing them so they lie between 0 and 1.</p>
+<blockquote>
+<p><strong>Orange按：Markov 问题部分解决了词汇搭配的结果，但是组成句子是否可以结合一些知识系统的方法？还是说全局使用词汇搭配？</strong></p>
+</blockquote>
+<p>所以概率改为<br>$$P(w<em>n|w</em>{n−1}) = \frac{C(w_{n−1}w<em>n)} {\sum{C(w</em>{n−1}w)}}$$<br>因为只要有$w_{n-1}$就认为有后面的值(基本如此，对于一个文本而言，只有少数没有，后面增加前后的标记这样就几乎不会有这个问题)<br>因此求和就可以转化成直接数个数(事实上可以预见的是如果不是bi-gram而是使用的多个词向后预测的求和都是这样的结果)</p>
+<p>也就是有：<br>$$P(w<em>n|w</em>{n−N+1}^{n-1}) = \frac{C(w_{n−N+1}^{n-1}w<em>n)} {\sum{C(</em>{n−N+1}^{n-1}w)}} $$<br>这种利用个数进行估计的也就是最大似然估计</p>
+<blockquote>
+<p> Maximum Likelihood Estimation or MLE 最大似然估计</p>
+</blockquote>
+<p>但是最大似然估计显然是对于某个语料库这样看的</p>
+<blockquote>
+<p>Although we will generally show bi-gram models in this chapter for pedagogical purposes, note that when there is sufﬁcient training data we are more likely to use tri-gram models, which condition on the previous two words rather than the previous TRI-GRAM word. To compute tri-gram probabilities at the very beginning of sentence, we can use two pseudo-words for the ﬁrst trigram.</p>
+</blockquote>
+<p>有的时候也是用三个单词的</p>
+<p>#</p>
+<h3 id="4-3-TRAINING-AND-TEST-SETS"><a href="#4-3-TRAINING-AND-TEST-SETS" class="headerlink" title="4.3 TRAINING AND TEST SETS"></a>4.3 TRAINING AND TEST SETS</h3><p>讲了一些train - test 的数据集划分的问题，没啥意思</p>
+<blockquote>
+<p>There is is a useful metric for how well a given statistical model matches a test corpus, called perplexity<br>注意测试数据不能包含在训练数据中</p>
+</blockquote>
+<p>In addition to training and test sets, other divisions of data are often useful.</p>
+<blockquote>
+<p>a held-out set  存留数据 主要用于训练一些额外的数据 详情参见4.6节</p>
+</blockquote>
+<p>有的时候需要预留出多个数据集</p>
+<h4 id="4-3-1-N-gram-Sensitivity-to-the-Training-Corpus"><a href="#4-3-1-N-gram-Sensitivity-to-the-Training-Corpus" class="headerlink" title="4.3.1 N-gram Sensitivity to the Training Corpus"></a>4.3.1 N-gram Sensitivity to the Training Corpus</h4><blockquote>
+<p>coherent 流利</p>
+</blockquote>
+<p>The N-gram model, like many statistical models, is very dependent on the training corpus.<br>对于 unigram 的情况，就是直接随机进行列举，列举的依据只是训练集的词的频率。</p>
+<p>后面作者统计了莎士比亚的一个corpus</p>
+<p>Recent research has also studied ways to dynamically adapt language models to different genres;<br>最近也有研究对于如何得到在不同数据集上都可以动态适应的语言模型</p>
+<h4 id="4-3-2-Unknown-Words-Open-versus-closed-vocabulary-tasks"><a href="#4-3-2-Unknown-Words-Open-versus-closed-vocabulary-tasks" class="headerlink" title="4.3.2 Unknown Words: Open versus closed vocabulary tasks"></a>4.3.2 Unknown Words: Open versus closed vocabulary tasks</h4><blockquote>
+<p>lexicon 词典</p>
+</blockquote>
+<p>The closed vocabulary assumption is the assumption that we have such a lexicon, and that the test set can only contain words from this lexicon.<br>We call these unseen events unknown words, or out of vocabulary (OOV) words.<br>The percentage of OOV words that appear in the test set is called the OOV rate. </p>
+<p>An open vocabulary system is one where we model these potential unknown words in the test set by adding a pseudoword called <code>&lt;UNK&gt;</code>. We can train the probabilities of the unknown word model <code>&lt;UNK&gt;</code> as follows:</p>
+<ol>
+<li>Choose a vocabulary (word list) which is ﬁxed in advance.</li>
+<li>Convert in the training set any word that is not in this set (any OOV word) to the unknown word token <code>&lt;UNK&gt;</code> in a text normalization step.</li>
+<li>Estimate the probabilities for <code>&lt;UNK&gt;</code> from its counts just like any other regular word in the training set.</li>
+</ol>
+<h3 id="4-4-EVALUATING-N-GRAMS-PERPLEXITY"><a href="#4-4-EVALUATING-N-GRAMS-PERPLEXITY" class="headerlink" title="4.4 EVALUATING N-GRAMS: PERPLEXITY"></a>4.4 EVALUATING N-GRAMS: PERPLEXITY</h3><p>The best way to evaluate the performance of a language model is to embed it in an application and measure the total performance of the application. Such end-to-end evaluation is called extrinsic evaluation, and also sometimes called in vivo evaluation (Sparck Jones and Galliers, 1996).</p>
+<p>end-to-end evaluation is often very expensive</p>
+<p><strong>Perplexity</strong> is the most common intrinsic evaluation metric for N-gram language models.<br>The intuition of perplexity is that given two probabilistic models, the better model is the one that has a tighter ﬁt to the test data, or predicts the details of the test data better. </p>
+<p> the perplexity (sometimes called PP for short)</p>
+<p>定义：<br>$$PP(w) = P(w1…w_n)^{-\frac{1}{N}} = \sqrt[N]{\frac{1}{P(w_1…w<em>n)}}$$<br>在使用链式法则的情况下，对于bi-gram的结果显然是：<br>$$PP(W) = \sqrt[N]{\prod</em>{i=1}^N \frac{1}{p(w<em>i|w</em>{i-1})}}$$</p>
+<p>显然有越高的状态可能性，其PP值越低<br>There is another way to think about perplexity: as the weighted average branching factor(加权平均分支系数) of a language.<br>The branching factor of a language is the number of possible next words that can follow any word.</p>
+<p>Perplexity可以认为是average branch factor（平均分支系数），即预测下一个词时可以有多少种选择。别人在作报告时说模型的PPL下降到90，可以直观地理解为，在模型生成一句话时下一个词有90个合理选择，可选词数越少，我们大致认为模型越准确。这样也能解释，为什么PPL越小，模型越好。</p>
+<p>perplexity is also closely related to the information theoretic notion of entropy.<br>使用closed vocabulary可以非常好的降低pp。</p>
+<p>In general, the perplexity of two language models is only comparable if they use the same vocabulary.</p>
+<h2 id="4-5-SMOOTHING"><a href="#4-5-SMOOTHING" class="headerlink" title="4.5 SMOOTHING"></a>4.5 SMOOTHING</h2><p>注意到我们现在的主要问题在于 使用似然来训练我们的模型参数，但是当数据稀疏的时候就显得力不从心了。</p>
+<p>We need a method which can help get better estimates for these zero or low frequency counts.<br>为了解决这种几乎统计不到的情况，我们使用smoothing </p>
+<blockquote>
+<p>这时的解决办法，我们称之为“平滑技术”（Smoothing）或者 “减值” （Discounting）。其主要策略是把在训练样本中出现过的事件的概率适当减小，然后把减小得到的概率密度分配给训练语料中没有出现过的事件。</p>
+</blockquote>
+<h3 id="4-5-1-Laplace-Smoothing"><a href="#4-5-1-Laplace-Smoothing" class="headerlink" title="4.5.1 Laplace Smoothing"></a>4.5.1 Laplace Smoothing</h3><p>既然是有些没有出现，那么直接在所有的词默认从一开始统计，也就是说直接在所有的个数统计上加上1，这样的话最后smooth之后的概率就是：<br>$$P_{Laplace} = \frac{c_i + 1}{N+V}$$<br>显然有其中的V就是词汇量<br>训练语料中未出现的n-Gram的概率不再为 0，而是一个大于 0 的较小的概率值。Add-one 平滑算法确实解决了我们的问题，但显然它也并不完美。由于训练语料中未出现n-Gram数量太多，平滑后，所有未出现的n-Gram占据了整个概率分布中的一个很大的比例。因此，在NLP中，Add-one给训练语料中没有出现过的 n-Gram 分配了太多的概率空间。此外，认为所有未出现的n-Gram概率相等是否合理其实也值得商榷。而且，对于出现在训练语料中的那些n-Gram，都增加同样的频度值，这是否欠妥，我们并不能给出一个明确的答案。</p>
+<p><a href="https://blog.csdn.net/baimafujinji/article/details/51297802" target="_blank" rel="external">Smoothing 算法博客</a></p>
+<h3 id="4-5-2-Good-Turing-Discounting"><a href="#4-5-2-Good-Turing-Discounting" class="headerlink" title="4.5.2 Good Turing Discounting"></a>4.5.2 Good Turing Discounting</h3><blockquote>
+<p>整体的思想依然是基于“劫富济贫”的思想，也就是说把非0事件的概率按照公式消减出现的次数，然后把剩余的概率均匀分给0概率事件。</p>
+</blockquote>
+<p>所谓discounting 算法就是使用已经出现过的数量来帮助估计未出现过的情况。<br>A word or N-gram (or any event) that occurs once is called a singleton, or a hapax legomenon. The Good-Turing intuition is to use the frequency of singletons as a re-estimate of the frequency of zero-count bigrams.<br>用$N_c$来表示出现c次的单词<br><a href="https://blog.csdn.net/u011415481/article/details/51156150?utm_source=blogxgwz9" target="_blank" rel="external">G-T Discounting 一个比较好的解释</a></p>
+<h3 id="4-5-3-Some-advanced-issues-in-Good-Turing-estimation"><a href="#4-5-3-Some-advanced-issues-in-Good-Turing-estimation" class="headerlink" title="4.5.3 Some advanced issues in Good-Turing estimation"></a>4.5.3 Some advanced issues in Good-Turing estimation</h3><p>Good-Turing的变体：Simple Good-Turing<br>使用$log(N_c) = a + blog(c) $来进行代替<br>同时设置阈值k<br>当c &gt; k的时候$c^<em> = c$<br>否则$c^</em> = \frac{(c+1)\frac{N_c+1}{N<em>c} - c\frac{(k+1)N</em>{k+1}}{N<em>1}}{1 - \frac{(k+1)N</em>{k+1}}{N_1}}$</p>
+<blockquote>
+<p>It turns out that Good-Turing discounting is not used by itself in discounting Ngrams; it is only used in combination with the backoff and interpolation algorithms described in the next sections.</p>
+</blockquote>
+<h3 id="4-6-INTERPOLATION"><a href="#4-6-INTERPOLATION" class="headerlink" title="4.6 INTERPOLATION"></a>4.6 INTERPOLATION</h3><p>设想对于一个trigram的模型，我们要统计语料库中 “like chinese food” 出现的次数，结果发现它没出现过，则计数为0。在回退策略中，将会试着用低阶gram来进行替代，也就是用 “chinese food” 出现的次数来替代。</p>
+<p>实际上，插值和回退两个都是使用这种思想。</p>
+<p>对于插值来说：<br>$$P(w<em>n | w</em>{n-1}w_{n-2}) = \lambda_1P(w<em>n | w</em>{n-1}w_{n-2}) + \lambda_2P(w<em>n|w</em>{n-1}) + \lambda_3P(w_n)$$</p>
+<p>同时有：<br>$$\sum_{i}\lambda_i = 1$$<br>How are these λ values set? Both the simple interpolation and conditional interpolation λs are learned from a held-out corpus.<br>可以根据试验凭经验设定，也可以通过应用某些算法确定，例如EM算法。</p>
+<p>在简单单线形插值法中，权值$λ_i$是常量。显然，它的问题在于不管高阶模型的估计是否可靠（毕竟有些时候高阶的Gram计数可能并无为 0），低阶模型均以同样的权重被加入模型，这并不合理。一个可以想到的解决办法是让 $λ_i$ 成为历史的函数。这个方法被称为Jelinek-Mercer Smoothing</p>
+<h3 id="4-7-BACKOFF-回退"><a href="#4-7-BACKOFF-回退" class="headerlink" title="4.7 BACKOFF(回退)"></a>4.7 BACKOFF(回退)</h3><p>The version of backoff that we describe uses Good-Turing discounting as well. It was introduced by Katz (1987), hence this kind of backoff with discounting is also called Katz backoff.<br>通常我们会认为高阶模型更加可靠，我们之前博文中给出的例子也表明，当能够获知更多历史信息时，其实就获得了当前推测的更多约束，这样就更容易得出正确的结论。所以在高阶模型可靠时，尽可能的使用高阶模型。但是有时候高级模型的计数结果可能为0，这时我们就转而使用低阶模型来避免稀疏数据的问题。</p>
+<p>也就是有：<br>$$P_{katz}(w<em>n |w^{n-1}</em>{n - N + 1}) = f(x)=\left{<br>\begin{aligned}<br>P^*(w<em>N |w</em>{n - N +1}^{n-1})   &amp; &amp;{if C(w<em>{n-N+1}^n) &gt; 0} \<br>\alpha(w</em>{n-N+1}^{n-1})P_{katz}(w<em>n | w</em>{n-N+1}^{n-1}) &amp; &amp;{otherwise}<br>\end{aligned}<br>\right.$$<br>这显然是一个递归的过程</p>
+<p>对于$P^*(.)$有更好的求法和其他的优化，这里不赘述了。</p>
+<h3 id="4-8-PRACTICAL-ISSUES-TOOLKITS-AND-DATA-FORMATS"><a href="#4-8-PRACTICAL-ISSUES-TOOLKITS-AND-DATA-FORMATS" class="headerlink" title="4.8 PRACTICAL ISSUES: TOOLKITS AND DATA FORMATS"></a>4.8 PRACTICAL ISSUES: TOOLKITS AND DATA FORMATS</h3><p>这里主要是说一些实验过程的一些注意点，这里不赘述了</p>
+<h3 id="4-9-ADVANCED-ISSUES-IN-LANGUAGE-MODELING"><a href="#4-9-ADVANCED-ISSUES-IN-LANGUAGE-MODELING" class="headerlink" title="4.9 ADVANCED ISSUES IN LANGUAGE MODELING"></a>4.9 ADVANCED ISSUES IN LANGUAGE MODELING</h3><h4 id="4-9-1-Advanced-Smoothing-Methods-Kneser-Ney-Smoothing"><a href="#4-9-1-Advanced-Smoothing-Methods-Kneser-Ney-Smoothing" class="headerlink" title="4.9.1 Advanced Smoothing Methods: Kneser-Ney Smoothing"></a>4.9.1 Advanced Smoothing Methods: Kneser-Ney Smoothing</h4><p>在介绍Kneser-Ney Smoothing之前，首先介绍Absolute Discounting 方法<br>之前add-one(laplace) 方法本质上说就是预留出一部分概率交给未出现的情况，那么为什么不直接对于已经进行统计的数据进行适当的减少呢。所谓的absolute 这个绝对就是在每次的统计中都会减少一个绝对值d，这样修正之后：<br>$$P_{absolute}(w<em>i | w</em>{i-1}) = \left{<br>\begin{aligned}<br>\frac{C(w_{I-1}w<em>i) - D}{C(w</em>{i-1})}  &amp; &amp;{if C(w_{i-1}w_i) &gt; 0} \<br>\alpha(w<em>i)P</em>{absolute}(w_i) &amp; &amp;{otherwise}<br>\end{aligned}<br>\right.$$<br>当然在实际情况中，我们也会保持$d \in [0,1]$</p>
+<p>下面我们介绍<strong>Kneser-Key discounting</strong><br>假设我们使用 bigram 和 unigram 的插值模型来预测下面这个句子中空缺的一个词该填什么</p>
+<blockquote>
+<p> I used to eat Chinese food with ______ instead of knife and fork.</p>
+</blockquote>
+<p>直觉上你一定能猜到这个地方应该填 chopsticks（筷子）。但是有一种情况是训练语料库中，Zealand 这个词出现的频率非常高，因为 New Zealand 是语料库中高频词。如果你采用标准的 unigram 模型，那么显然 Zealand 会比 chopsticks 具有更高的权重，所以最终计算机会选择Zealand这个词（而非chopsticks）填入上面的空格，尽管这个结果看起来相当不合理。这其实就暗示我们应该调整一下策略，最好仅当前一个词是 New 时，我们才给 Zealand 赋一个较高的权值，否则尽管在语料库中 Zealand 也是高频词，但我们并不打算单独使用它。</p>
+<h4 id="4-9-2-Class-based-N-grams"><a href="#4-9-2-Class-based-N-grams" class="headerlink" title="4.9.2 Class-based N-grams"></a>4.9.2 Class-based N-grams</h4><p>Class-Based N-grams，又被称为Cluster N-grams，是一种基于词的类别信息或族信息的N-gram变体。它针对训练语料的稀疏性特征可以起到良好的效果。比方说针对一个航班预定系统，我们希望预测“到上海”的bi-gram概率，但是“到上海”从来没有出现在训练预料中。但是我们的训练语料中有“到北京”、“到长沙”、“到深圳”。如果我们知道它们都是城市，并且假设“上海”在其他上下文语料中有出现，那么我么可以预测出“从”后面跟城市名的可能性。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/uncategorized/Linear-Model/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OrangeLuYao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OrangeLuyao的小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/src/uncategorized/Linear-Model/" itemprop="url">Linear Model</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-09T14:26:00+08:00">
+                2018-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="机器学习-——-线性模型"><a href="#机器学习-——-线性模型" class="headerlink" title="机器学习 —— 线性模型"></a>机器学习 —— 线性模型</h1><h2 id="1-西瓜数据集"><a href="#1-西瓜数据集" class="headerlink" title="1. 西瓜数据集"></a>1. 西瓜数据集</h2>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/uncategorized/vscode-build-cpp-configure/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1587,233 +1929,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/uncategorized/LightOJ-1331/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="OrangeLuYao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OrangeLuyao的小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/src/uncategorized/LightOJ-1331/" itemprop="url">LightOJ-1331</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-22T22:31:35+08:00">
-                2018-04-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>来源：lightOJ 1331</p>
-<p>水题</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">double</span> <span class="title">area</span><span class="params">(<span class="keyword">double</span> r,<span class="keyword">double</span> deg)</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> r * r * deg / <span class="number">2</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">double</span> r1,r2,r3;</div><div class="line">    <span class="keyword">double</span> a,b,c;</div><div class="line">    <span class="keyword">int</span> T,nc = <span class="number">1</span>;</div><div class="line"><span class="comment">//    cout&lt;&lt;acos(-1.0)&lt;&lt;endl;</span></div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;T);</div><div class="line">    <span class="keyword">while</span>(T--)&#123;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%lf%lf%lf"</span>,&amp;r1,&amp;r2,&amp;r3);</div><div class="line">        a = r1 + r2;</div><div class="line">        b = r2 + r3;</div><div class="line">        c = r1 + r3;</div><div class="line"><span class="comment">//        cout&lt;&lt;"a = "&lt;&lt;a&lt;&lt;" b = "&lt;&lt;b&lt;&lt;" c = "&lt;&lt;c&lt;&lt;endl;</span></div><div class="line">        <span class="keyword">double</span> dega,degb,degc;</div><div class="line">        degc = <span class="built_in">acos</span>((a*a+b*b-c*c)/(<span class="number">2</span>*a*b));</div><div class="line">        dega = <span class="built_in">acos</span>((b*b+c*c-a*a)/(<span class="number">2</span>*b*c));</div><div class="line">        degb = <span class="built_in">acos</span>((a*a+c*c-b*b)/(<span class="number">2</span>*a*c));</div><div class="line"><span class="comment">//        cout&lt;&lt;dega&lt;&lt;" "&lt;&lt;degb&lt;&lt;" "&lt;&lt;degc&lt;&lt;" pi / 3 = "&lt;&lt;acos(-1.0)/3&lt;&lt;endl;</span></div><div class="line">        <span class="keyword">double</span> ans = a * b * <span class="built_in">sin</span>(degc) / <span class="number">2.0</span>;</div><div class="line"><span class="comment">//        cout&lt;&lt;sqrt(3) / 4.0 * a * a &lt;&lt;endl;</span></div><div class="line"><span class="comment">//        cout&lt;&lt;area(r3,dega)&lt;&lt;endl;</span></div><div class="line">        ans = ans - (area(r3,dega) + area(r1,degb) + area(r2,degc));</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"Case %d: %.10lf\n"</span>,nc++,ans);</div><div class="line"><span class="comment">//        cout&lt;&lt;sqrt(3) / 4.0 * a * a&lt;&lt;endl;</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/uncategorized/LightOJ-1387/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="OrangeLuYao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OrangeLuyao的小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/src/uncategorized/LightOJ-1387/" itemprop="url">LightOJ-1387</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-22T22:31:33+08:00">
-                2018-04-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>来源：lightOJ 1387</p>
-<p>代码：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> T,nc = <span class="number">1</span>;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;T);</div><div class="line">    <span class="keyword">while</span>(T--)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">int</span> n;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</div><div class="line">        LL ans = <span class="number">0</span>;</div><div class="line">        <span class="keyword">char</span> op[<span class="number">20</span>];</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"Case %d:\n"</span>,nc++);</div><div class="line">        <span class="keyword">while</span>(n--)&#123;</div><div class="line">            <span class="built_in">scanf</span>(<span class="string">"%s"</span>,op);</div><div class="line">            <span class="keyword">if</span>(op[<span class="number">0</span>] == <span class="string">'d'</span>) &#123;</div><div class="line">                LL d;</div><div class="line">                <span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;d);</div><div class="line">                ans += d;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(op[<span class="number">0</span>] == <span class="string">'r'</span>)&#123;</div><div class="line">                <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1863,7 +1978,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">191</span>
+                <span class="site-state-item-count">193</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
