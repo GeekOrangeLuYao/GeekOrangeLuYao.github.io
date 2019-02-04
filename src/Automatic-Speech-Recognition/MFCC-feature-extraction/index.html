@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Keep It Simple Stupid" />
+  <meta name="keywords" content="feature project," />
 
 
 
@@ -93,15 +93,19 @@
 
 
 
-<meta name="description" content="深自缄默，如云漂泊">
-<meta property="og:type" content="website">
-<meta property="og:title" content="OrangeLuyao的小站">
-<meta property="og:url" content="https://GeekOrangeLuyao.github.io/index.html">
+<meta name="description" content="MFCCPPT下载 1. 什么是MFCC 特征在任意一个Automatic speech recognition 系统中，第一步就是提取特征。换句话说，我们需要把音频信号中具有辨识性的成分提取出来，然后把其他的乱七八糟的信息扔掉。MFCCs（Mel Frequency Cepstral Coefficents）是一种在自动语音和说话人识别中广泛使用的特征。下面我们一步步剖析mfcc特征的来历。 1">
+<meta name="keywords" content="feature project">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MFCC feature extraction">
+<meta property="og:url" content="https://GeekOrangeLuyao.github.io/src/Automatic-Speech-Recognition/MFCC-feature-extraction/index.html">
 <meta property="og:site_name" content="OrangeLuyao的小站">
-<meta property="og:description" content="深自缄默，如云漂泊">
+<meta property="og:description" content="MFCCPPT下载 1. 什么是MFCC 特征在任意一个Automatic speech recognition 系统中，第一步就是提取特征。换句话说，我们需要把音频信号中具有辨识性的成分提取出来，然后把其他的乱七八糟的信息扔掉。MFCCs（Mel Frequency Cepstral Coefficents）是一种在自动语音和说话人识别中广泛使用的特征。下面我们一步步剖析mfcc特征的来历。 1">
+<meta property="og:image" content="https://geekorangeluyao.github.io/src/Automatic-Speech-Recognition/MFCC-feature-extraction/1.png">
+<meta property="og:updated_time" content="2019-02-04T14:11:59.322Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OrangeLuyao的小站">
-<meta name="twitter:description" content="深自缄默，如云漂泊">
+<meta name="twitter:title" content="MFCC feature extraction">
+<meta name="twitter:description" content="MFCCPPT下载 1. 什么是MFCC 特征在任意一个Automatic speech recognition 系统中，第一步就是提取特征。换句话说，我们需要把音频信号中具有辨识性的成分提取出来，然后把其他的乱七八糟的信息扔掉。MFCCs（Mel Frequency Cepstral Coefficents）是一种在自动语音和说话人识别中广泛使用的特征。下面我们一步步剖析mfcc特征的来历。 1">
+<meta name="twitter:image" content="https://geekorangeluyao.github.io/src/Automatic-Speech-Recognition/MFCC-feature-extraction/1.png">
 
 
 
@@ -129,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="https://GeekOrangeLuyao.github.io/"/>
+  <link rel="canonical" href="https://GeekOrangeLuyao.github.io/src/Automatic-Speech-Recognition/MFCC-feature-extraction/"/>
 
 
 
 
 
-  <title>OrangeLuyao的小站</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>MFCC feature extraction | OrangeLuyao的小站</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -160,9 +164,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left 
-   page-home 
- ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -272,9 +274,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -300,9 +302,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/src/Automatic-Speech-Recognition/MFCC-feature-extraction/" itemprop="url">MFCC feature extraction</a></h1>
+          <h1 class="post-title" itemprop="name headline">MFCC feature extraction</h1>
         
 
         <div class="post-meta">
@@ -371,9 +371,7 @@
       
 
       
-        
-          
-            <h1 id="MFCC"><a href="#MFCC" class="headerlink" title="MFCC"></a>MFCC</h1><p><a href="http://www.speech.cs.cmu.edu/15-492/slides/03_mfcc.pdf" target="_blank" rel="external">PPT下载</a></p>
+        <h1 id="MFCC"><a href="#MFCC" class="headerlink" title="MFCC"></a>MFCC</h1><p><a href="http://www.speech.cs.cmu.edu/15-492/slides/03_mfcc.pdf" target="_blank" rel="external">PPT下载</a></p>
 <h2 id="1-什么是MFCC-特征"><a href="#1-什么是MFCC-特征" class="headerlink" title="1. 什么是MFCC 特征"></a>1. 什么是MFCC 特征</h2><p>在任意一个Automatic speech recognition 系统中，第一步就是提取特征。换句话说，我们需要把音频信号中具有辨识性的成分提取出来，然后把其他的乱七八糟的信息扔掉。<br>MFCCs（Mel Frequency Cepstral Coefficents）是一种在自动语音和说话人识别中广泛使用的特征。<br>下面我们一步步剖析mfcc特征的来历。</p>
 <h3 id="1-1-声谱图-Spectrogram"><a href="#1-1-声谱图-Spectrogram" class="headerlink" title="1.1 声谱图(Spectrogram)"></a>1.1 声谱图(Spectrogram)</h3><p>我们处理的是语音信号，那么如何去描述它很重要。因为不同的描述方式放映它不同的信息。那怎样的描述方式才利于我们观测，利于我们理解呢？这里我们先来了解一个叫声谱图的东西。</p>
 <p>对于一段语音信号，首先将这些语音进行分帧，通过短时FFT计算，每帧语音都对应于一个频谱，频谱表示频率与能量的关系。</p>
@@ -466,495 +464,72 @@
 </ol>
 <p>最终得到的结果如下:<br><img src="/src/Automatic-Speech-Recognition/MFCC-feature-extraction/1.png" alt="mfcc结果"></p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/Machine-Learning/Gaussian-Mixture-Model/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="OrangeLuYao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OrangeLuyao的小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/src/Machine-Learning/Gaussian-Mixture-Model/" itemprop="url">Gaussian Mixture Model</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-01T21:23:21+08:00">
-                2019-02-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
-                    <span itemprop="name">Machine Learning</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/feature-project/" rel="tag"># feature project</a>
           
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Gaussian-Mixture-Model-高斯混合模型"><a href="#Gaussian-Mixture-Model-高斯混合模型" class="headerlink" title="Gaussian Mixture Model 高斯混合模型"></a>Gaussian Mixture Model 高斯混合模型</h1>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
       
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/programming-tools/Simple-tutorial-for-git/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="OrangeLuYao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OrangeLuyao的小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/src/programming-tools/Simple-tutorial-for-git/" itemprop="url">Simple tutorial for git</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-29T23:24:15+08:00">
-                2019-01-29
-              </time>
+              <a href="/src/Machine-Learning/Gaussian-Mixture-Model/" rel="next" title="Gaussian Mixture Model">
+                <i class="fa fa-chevron-left"></i> Gaussian Mixture Model
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/programming-tools/" itemprop="url" rel="index">
-                    <span itemprop="name">programming tools</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h1 id="简单Git教程"><a href="#简单Git教程" class="headerlink" title="简单Git教程"></a>简单Git教程</h1><p>Git是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。Git 与常用的版本控制工具 CVS, Subversion 等不同，它采用了分布式版本库的方式，不必服务器端软件支持。</p>
-<blockquote>
-<p>这里不介绍git 的各个GUI的操作，因为git的丰富功能都是在命令行中的。<br>这里的例子使用的github，但是其他类似的Git服务器都是类似的。</p>
-</blockquote>
-<h2 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h2><ol>
-<li>对于Linux的系统，大部分的Linux系统都是预装了git，如果没有git也可以通过一些简单的命令快速安装。</li>
-<li>对于windows的系统，需要在官网下载安装包，然后安装正常软件的过程进行安装即可，建议是将git安装到全局变量中，因为这方便打开一个命令行，即开即用。本身git的命令都是以git开头的，所以也基本不会和已有的命令重叠。</li>
-</ol>
-<h2 id="2-使用简明教程"><a href="#2-使用简明教程" class="headerlink" title="2. 使用简明教程"></a>2. 使用简明教程</h2><h3 id="2-1-初始化一个仓库"><a href="#2-1-初始化一个仓库" class="headerlink" title="2.1 初始化一个仓库"></a>2.1 初始化一个仓库</h3><p>在某个目录下面使用命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git init</div></pre></td></tr></table></figure></p>
-<p>可以看到当前目录下面多了一个<code>.git</code>文件夹，这就完成了一次初始化。</p>
-<h3 id="2-2-检出仓库"><a href="#2-2-检出仓库" class="headerlink" title="2.2 检出仓库"></a>2.2 检出仓库</h3><p>一般而言，需要将已经存在的项目检出到当前的文件夹之下的时候，可以使用如下命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 本地项目</span></div><div class="line">git <span class="built_in">clone</span> /path/to/repository </div><div class="line"><span class="comment"># 远程项目</span></div><div class="line">git <span class="built_in">clone</span> username@host:/path/to/repository</div></pre></td></tr></table></figure></p>
-<p>注意到，当项目比较大的时候，git的缓存要求比较苛刻，这也是为什么在国内有一些文件特别大的项目进行检出的时候会遭遇到失败的原因。</p>
-<h3 id="2-3-提出添加"><a href="#2-3-提出添加" class="headerlink" title="2.3 提出添加"></a>2.3 提出添加</h3><p>你可以使用如下命令提出更改：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 增加某一个文件</span></div><div class="line">git add &lt;filename&gt;</div><div class="line"></div><div class="line"><span class="comment"># 增加当前文件夹下所有的更改</span></div><div class="line">git add *</div></pre></td></tr></table></figure></p>
-<h3 id="2-4-本地提交"><a href="#2-4-本地提交" class="headerlink" title="2.4 本地提交"></a>2.4 本地提交</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git commit -m<span class="string">"comment content"</span></div></pre></td></tr></table></figure>
-<p>这个<strong>comment content</strong>的意思是本次commit的一些文字描述。在项目中可以做好规定，以方便与查看修改如何。<br>这个时候，本地的HEAD已经被进行了修改。</p>
-<h3 id="2-5-推送改动"><a href="#2-5-推送改动" class="headerlink" title="2.5 推送改动"></a>2.5 推送改动</h3><p>下面我们希望将远程的改动修改到远程的服务器中，一般而言是使用如下命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin master</div></pre></td></tr></table></figure></p>
-<p>当然这样就是提交到主分支<strong>master</strong>中，我们也可以对某个分支进行提交，只需要修改master，即可。</p>
-<h3 id="2-6-添加远程的仓库"><a href="#2-6-添加远程的仓库" class="headerlink" title="2.6 添加远程的仓库"></a>2.6 添加远程的仓库</h3><p>如果你还没有克隆现有仓库，并欲将你的仓库连接到某个远程服务器，你可以使用如下命令添加：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote add origin &lt;server&gt;</div></pre></td></tr></table></figure></p>
-<p>这个server对于github或者gitlab的服务而言，一般可以直接复制，粘贴即可。</p>
-<h3 id="2-7-创建分支"><a href="#2-7-创建分支" class="headerlink" title="2.7 创建分支"></a>2.7 创建分支</h3><p>创建一个叫做“feature_x”的分支，并切换过去<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout -b feature_x</div></pre></td></tr></table></figure></p>
-<p>使用<code>git checkout</code>还可以在各个分支间切换，比如切换回主目录：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout master</div></pre></td></tr></table></figure></p>
-<h3 id="2-8-删除分支"><a href="#2-8-删除分支" class="headerlink" title="2.8 删除分支"></a>2.8 删除分支</h3><p>现在要删除某个分支：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch -d feature_x</div></pre></td></tr></table></figure></p>
-<h3 id="2-9-更新"><a href="#2-9-更新" class="headerlink" title="2.9 更新"></a>2.9 更新</h3><p>要更新你的本地仓库至最新改动，执行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git pull</div></pre></td></tr></table></figure></p>
-<p>以在你的工作目录中 获取（fetch） 并 合并（merge） 远端的改动。<br>要合并其他分支到你的当前分支（例如 master），执行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git merge &lt;branch&gt;</div></pre></td></tr></table></figure></p>
-<p>在这两种情况下，git 都会尝试去自动合并改动。遗憾的是，这可能并非每次都成功，并可能出现冲突（conflicts）。 这时候就需要你修改这些文件来手动合并这些冲突（conflicts）。改完之后，你需要执行<code>git add</code>命令，将结果重新标记为合并成功。<br>在合并改动之前，你可以使用如下命令预览差异：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git diff &lt;source_branch&gt; &lt;target_branch&gt;</div></pre></td></tr></table></figure></p>
-<h3 id="2-10-标签"><a href="#2-10-标签" class="headerlink" title="2.10 标签"></a>2.10 标签</h3><p>为软件发布创建标签是推荐的。因为HEAD名往往是一个比较乱的HASH字符，所以取一个别名可以方便管理。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git tag 1.0.0 1b2e1d63ff</div></pre></td></tr></table></figure></p>
-<p>可以使用下列命令获取提交 ID：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">log</span></div></pre></td></tr></table></figure></p>
-<h3 id="2-11-替换本地改动"><a href="#2-11-替换本地改动" class="headerlink" title="2.11 替换本地改动"></a>2.11 替换本地改动</h3><p>假如你操作失误（当然，这最好永远不要发生），你可以使用如下命令替换掉本地改动：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout -- &lt;filename&gt;</div></pre></td></tr></table></figure></p>
-<p>此命令会使用 HEAD 中的最新内容替换掉你的工作目录中的文件。已添加到暂存区的改动以及新文件都不会受到影响。</p>
-<p>假如你想丢弃你在本地的所有改动与提交，可以到服务器上获取最新的版本历史，并将你本地主分支指向它：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git fetch origin</div><div class="line">git reset --hard origin/master</div></pre></td></tr></table></figure></p>
-<h2 id="3-高阶内容"><a href="#3-高阶内容" class="headerlink" title="3. 高阶内容"></a>3. 高阶内容</h2><h3 id="3-1-Git工作流"><a href="#3-1-Git工作流" class="headerlink" title="3.1 Git工作流"></a>3.1 Git工作流</h3><p>当初始化一个git文件夹的时候，实际上，我们对于当前文件夹的文件进行了监控，<br>你的本地仓库由 git 维护的三棵“树”组成。第一个是你的<strong>工作目录</strong>，它持有实际文件；第二个是<strong>暂存区（Index）</strong>，它像个缓存区域，临时保存你的改动；最后是<strong>HEAD</strong>，它指向你最后一次提交的结果。</p>
-<p>对于一个文件而言，在git 系统中，它有四种情况：</p>
-<ol>
-<li><p>untracked</p>
-<p> 还没被跟踪的文件，表示对于这个文件<code>git add</code>此命令还没有作用过</p>
-</li>
-<li><p>unmodified</p>
-</li>
-<li><p>modified</p>
-<p> 文件被修改之后，会出现<strong>Changes not staged for commit</strong>这样的字样，这个时候仍然使用<code>git add</code>命令，表示这个文件我已经更新到这个被更改过的版本了。</p>
-</li>
-<li><p>staged</p>
-</li>
-</ol>
-<p>使用如下命令查看文件的状态：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git status</div></pre></td></tr></table></figure>
-<h3 id="3-2-分支"><a href="#3-2-分支" class="headerlink" title="3.2 分支"></a>3.2 分支</h3><p>分支是用来将特性开发绝缘开来的。在你创建仓库的时候，master 是“默认的”分支。在其他分支上进行开发，完成后再将它们合并到主分支上。</p>
-<h3 id="3-3-忽略某些文件"><a href="#3-3-忽略某些文件" class="headerlink" title="3.3 忽略某些文件"></a>3.3 忽略某些文件</h3><p>一般我们总会有些文件无需纳入 Git 的管理，也不希望它们总出现在未跟踪文件列表。通常都是些自动生成的文件，比如日志文件，或者编译过程中创建的临时文件等。我们可以创建一个名为<code>.gitignore</code>的文件列出要忽略的文件模式。</p>
-<p>这个具体的写法，请参见<a href="https://git-scm.com/book/zh/v1/Git-%E5%9F%BA%E7%A1%80-%E8%AE%B0%E5%BD%95%E6%AF%8F%E6%AC%A1%E6%9B%B4%E6%96%B0%E5%88%B0%E4%BB%93%E5%BA%93#%E5%BF%BD%E7%95%A5%E6%9F%90%E4%BA%9B%E6%96%87%E4%BB%B6" target="_blank" rel="external">官方文档</a></p>
-<h2 id="4-附录"><a href="#4-附录" class="headerlink" title="4. 附录"></a>4. 附录</h2><ol>
-<li><a href="https://book.git-scm.com/" target="_blank" rel="external">git 参考书</a></li>
-<li><a href="https://help.github.com/" target="_blank" rel="external">github 帮助</a></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/daily/Hello-World/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="OrangeLuYao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OrangeLuyao的小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/src/daily/Hello-World/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-29T23:17:29+08:00">
-                2019-01-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/daily/" itemprop="url" rel="index">
-                    <span itemprop="name">daily</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Hello"><a href="#Hello" class="headerlink" title="Hello"></a>Hello</h1><p>Welcome, Here is Orange’s blog.<br>I’m here to share my story with computer science.</p>
-
-          
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
@@ -962,6 +537,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -981,8 +560,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -1091,6 +679,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MFCC"><span class="nav-number">1.</span> <span class="nav-text">MFCC</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-什么是MFCC-特征"><span class="nav-number">1.1.</span> <span class="nav-text">1. 什么是MFCC 特征</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-声谱图-Spectrogram"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 声谱图(Spectrogram)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-倒谱分析-Cepstrum-Analysis"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 倒谱分析 (Cepstrum Analysis)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-梅尔频率分析-Mel-Frequency-Analysis"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 梅尔频率分析(Mel-Frequency Analysis)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-MFCC算法"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4 MFCC算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-使用Python对于MFCC进行求解"><span class="nav-number">1.2.</span> <span class="nav-text">2. 使用Python对于MFCC进行求解</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1204,10 +808,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
