@@ -283,6 +283,235 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/Voiceprint-Recognization/Article-Speaker-Verification-Using-Adapted-Gaussian/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OrangeLuYao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OrangeLuyao的小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/src/Voiceprint-Recognization/Article-Speaker-Verification-Using-Adapted-Gaussian/" itemprop="url">Article: Speaker Verification Using Adapted Gaussian</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-07T23:55:42+08:00">
+                2019-02-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Voiceprint-Recognization/" itemprop="url" rel="index">
+                    <span itemprop="name">Voiceprint Recognization</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Article-Speaker-Verification-Using-Adapted-Gaussian"><a href="#Article-Speaker-Verification-Using-Adapted-Gaussian" class="headerlink" title="Article: Speaker Verification Using Adapted Gaussian"></a>Article: Speaker Verification Using Adapted Gaussian</h1><blockquote>
+<p>GMM-UBM 的经典论文</p>
+</blockquote>
+<h2 id="论文情况"><a href="#论文情况" class="headerlink" title="论文情况"></a>论文情况</h2><ol>
+<li><p>题目<br>Speaker Verification Using Adapted Gaussian Mixture Models</p>
+</li>
+<li><p>作者<br>Douglas A. Reynolds, Thomas F. Quatieri, and Robert B. Dunn M.I.T. Lincoln Laboratory, 244 Wood St., Lexington, Massachusetts 02420<br>E-mail: dar@sst.ll.mit.edu, tfq@sst.ll.mit.edu, rbd@sst.ll.mit.edu</p>
+</li>
+<li><p>摘要</p>
+<blockquote>
+<p>In this paper we describe the major elements of MIT Lincoln Laboratory’s Gaussian mixture model (GMM)-based speaker verification system used successfully in several NIST Speaker Recognition Evaluations (SREs). The system is built around the likelihood ratio test for verification, using simple but effective GMMs for likelihood functions, a universal background model (UBM) for alternative speaker representation, and a form of Bayesian adaptation to derive speaker models from the UBM. The development and use of a handset detector and score normalization to greatly improve verification performance is also described and discussed. Finally, representative performance benchmarks and system behavior experiments on NIST SRE corpora are presented.</p>
+</blockquote>
+</li>
+<li><p>关键词<br>Key Words: speaker recognition; Gaussian mixture models; likelihood ratio detector; universal background model; handset normalization; NIST evaluation.</p>
+</li>
+<li><p>引用</p>
+<blockquote>
+<p>Reynolds, Douglas A., Quatieri, Thomas F., and Dunn, Robert B., Speaker Verification Using Adapted Gaussian Mixture Models, Digital Signal Processing 10 (2000), 19–41.</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="论文要点"><a href="#论文要点" class="headerlink" title="论文要点"></a>论文要点</h2><h3 id="1-INTRODUCTION"><a href="#1-INTRODUCTION" class="headerlink" title="1. INTRODUCTION"></a>1. INTRODUCTION</h3><ul>
+<li>Over the past several years, Gaussian mixture models (GMMs) have become the dominant approach for modeling in text-independent speaker recognition applications.</li>
+</ul>
+<h3 id="2-LIKELIHOOD-RATIO-DETECTOR"><a href="#2-LIKELIHOOD-RATIO-DETECTOR" class="headerlink" title="2. LIKELIHOOD RATIO DETECTOR"></a>2. LIKELIHOOD RATIO DETECTOR</h3><ul>
+<li><p>定义说话人识别<br>Given a segment of speech, Y, and a hypothesized speaker, S, the task of speaker detection, also referred to as verification, is to determine if Y was spoken by S.</p>
+</li>
+<li><p>文章定性是single-speaker<br>In this paper we will focus on the core single-speaker detection task.</p>
+</li>
+<li><p>多speaker的论文如下<br>Discussion of systems that handle the multispeaker detection task can be found in [9].</p>
+</li>
+<li><p>判定条件<br>The single-speaker detection task can be restated as a basic hypothesis test<br>between $H_0$ and $H_1$</p>
+<blockquote>
+<p>$H_0$: $Y$ is from the hypothesized speaker $S$<br>$H_1$: $Y$ is not from the hypothesized speaker $S$<br>The optimum test to decide between these two hypotheses is a likelihood ratio<br>test given by<br>$$test = \frac{p(Y|H_0)}{Y|H_1}$$<br>$$test \ge \theta ~ accecpt H_0$$<br>$$test \le \theta ~ reject  H_0$$<br>where $p(Y|H_i), i = 0,1$, is the probability density function for the hypothesis $H_i$ evaluated for the observed speech segment $Y$, also referred to as the likelihood of the hypothesis $H_i$ given the speech segment.</p>
+</blockquote>
+</li>
+</ul>
+<p>// TO-DO</p>
+<h3 id="3-GMM-UBM-VERIFICATION-SYSTEM"><a href="#3-GMM-UBM-VERIFICATION-SYSTEM" class="headerlink" title="3. GMM-UBM VERIFICATION SYSTEM"></a>3. GMM-UBM VERIFICATION SYSTEM</h3><p>下面介绍整个系统的重要部分</p>
+<h4 id="3-1-Gaussian-Mixture-Models"><a href="#3-1-Gaussian-Mixture-Models" class="headerlink" title="3.1 Gaussian Mixture Models"></a>3.1 Gaussian Mixture Models</h4><ul>
+<li>选择概率模型<blockquote>
+<p>An important step in the implementation of the above likelihood ratio detector is selection of the actual likelihood function, $p(X | \lambda)$.The choice of this function is largely dependent on the features being used as well as specifics of the application.</p>
+</blockquote>
+</li>
+</ul>
+<p>For text-independent(文本无关) speaker recognition, where there is no prior knowledge of what the speaker will say, the most successful likelihood function has been Gaussian mixture models.</p>
+<p>In text-dependent(文本相关) applications, where there is strong prior knowledge of the spoken text, additional temporal knowledge can be incorporated by using hidden Markov models (HMMs) as the basis for the likelihood function.</p>
+<ul>
+<li><p>HMM和GMM的比较<br>To date, however, use of more complicated likelihood functions, such as those based on HMMs, has shown no advantage over GMMs for text-independent speaker detection tasks as in the NIST SREs.</p>
+</li>
+<li><p>模型描述<br>For a D-dimensional feature vector, x, the mixture density used for the likelihood function is defined as:<br>$$p(x | \lambda) = \sum_{i = 1}^{M}w_i p_i(x)$$</p>
+</li>
+</ul>
+<p>The density is a weighted linear combination of M unimodal Gaussian densities, $p_i(x)$, each parameterized by a mean $D \times 1$ vector, $\mu_i$, and a $D \times D$ covariance matrix, $\Sigma_i$:<br>$$p_i(x) = \frac{1}{(2\pi)^{\frac{D}{2}}|\Sigma_i|^{\frac{1}{2}}}exp\left{-\frac{1}{2}(x - \mu_i)^T(\Sigma_i)^{-1}(x - \mu_i)\right}$$</p>
+<h4 id="3-2-Front-End-Processing"><a href="#3-2-Front-End-Processing" class="headerlink" title="3.2 Front-End Processing"></a>3.2 Front-End Processing</h4><ul>
+<li><p>分帧<br>First, the speech is segmented into frames by a 20-ms window progressing at a 10-ms frame rate.</p>
+</li>
+<li></li>
+</ul>
+<h4 id="3-3-Universal-Background-Model"><a href="#3-3-Universal-Background-Model" class="headerlink" title="3.3 Universal Background Model"></a>3.3 Universal Background Model</h4><h4 id="3-4-Adaptation-of-Speaker-Model"><a href="#3-4-Adaptation-of-Speaker-Model" class="headerlink" title="3.4 Adaptation of Speaker Model"></a>3.4 Adaptation of Speaker Model</h4><h4 id="3-5-Log-Likelihood-Ratio-Computation"><a href="#3-5-Log-Likelihood-Ratio-Computation" class="headerlink" title="3.5 Log-Likelihood Ratio Computation"></a>3.5 Log-Likelihood Ratio Computation</h4><h4 id="3-6-Handset-Score-Normalization"><a href="#3-6-Handset-Score-Normalization" class="headerlink" title="3.6 Handset Score Normalization"></a>3.6 Handset Score Normalization</h4><h3 id="4-EXPERIMENTS"><a href="#4-EXPERIMENTS" class="headerlink" title="4. EXPERIMENTS"></a>4. EXPERIMENTS</h3><h3 id="5-CONCLUSIONS-AND-FUTURE-DIRECTIONS"><a href="#5-CONCLUSIONS-AND-FUTURE-DIRECTIONS" class="headerlink" title="5. CONCLUSIONS AND FUTURE DIRECTIONS"></a>5. CONCLUSIONS AND FUTURE DIRECTIONS</h3><h2 id="论文引用"><a href="#论文引用" class="headerlink" title="论文引用"></a>论文引用</h2><p><strong>REFERENCES</strong></p>
+<ol>
+<li>Rose, R. C. and Reynolds, D. A., Text-independent speaker identification using automatic acoustic segmentation. In Proceedings of the International Conference on Acoustics, Speech, and Signal Processing, 1990, pp. 293–296.</li>
+<li>Reynolds, D. A., A Gaussian Mixture Modeling Approach to Text-Independent Speaker Identification. Ph.D. thesis, Georgia Institute of Technology, September 1992.</li>
+<li>Reynolds, D. A. and Rose, R. C., Robust text-independent speaker identification using Gaussian mixture speaker models, IEEE Trans. Speech Audio Process. 3 (1995), 72–83.</li>
+<li>Reynolds, D. A., Speaker identification and verification using Gaussian mixture speaker models, Speech Commun. 17 (1995), 91–108.</li>
+<li>Reynolds, D. A., Automatic speaker recognition using Gaussian mixture speaker models, Lincoln Lab. J. 8 (1996), 173–192.</li>
+<li>Doddington, G., Przybocki, M., Martin, A., and Reynolds, D. A., The NIST speaker recognition evaluation—overview, methodology, systems, results, perspective, Speech Commun., in press.</li>
+<li>Martin, A. and Przybocki, M., The NIST 1999 speaker recognition evaluation—an overview, Digital Signal Process. 10 (2000), 1–18.</li>
+<li>Reynolds, D. A., Comparison of background normalization methods for text-independent<br>speaker verification. In Proceedings of the European Conference on Speech Communication and Technology, September 1997, pp. 963–966.</li>
+<li>Dunn, R. B., Reynolds, D. A., and Quatieri, T. F., Approaches to speaker detection and tracking in conversational speech, Digital Signal Process. 10 (2000), 93–112.</li>
+<li>Higgins, A., Bahler, L., and Porter, J., Speaker verification using randomized phrase prompting, Digital Signal Process. 1 (1991), 89–106.</li>
+<li>Rosenberg, A. E., DeLong, J., Lee, C. H., Juang, B. H., and Soong, F. K., The use of cohort normalized scores for speaker verification. In International Conference on Speech and Language Processing, November 1992, pp. 599–602.</li>
+<li>Matsui, T. and Furui, S., Similarity normalization methods for speaker verification based on a posteriori probability. In Proceedings of the ESCA Workshop on Automatic Speaker Recognition, Identification and Verification, 1994, pp. 59–62.</li>
+<li>Carey, M., Parris, E., and Bridle, J., A speaker verification system using alphanets. In Proceedings of the International Conference on Acoustics, Speech, and Signal Processing, May 1991, pp. 397–400.</li>
+<li>Matsui, T. and Furui, S., Likelihood normalization for speaker verification using a phonemeand speaker-independent model, Speech Commun. 17 (1995), 109–116.</li>
+<li>Rosenberg, A. E. and Parthasarathy, S., Speaker background models for connected digit<br>password speaker verification. In Proceedings of the International Conference on Acoustics, Speech, and Signal Processing, May 1996, pp. 81–84.</li>
+<li>Heck, L. P. and Weintraub, M., Handset-dependent background models for robust textindependent speaker recognition. In Proceedings of the International Conference on Acoustics, Speech, and Signal Processing, April 1997, pp. 1071–1073.</li>
+<li>Dempster, A., Laird, N., and Rubin, D., Maximum likelihood from incomplete data via the EM algorithm, J. Roy. Stat. Soc. 39 (1977), 1–38.</li>
+<li>Duda, R. O. and Hart, P. E., Pattern Classification and Scene Analysis. Wiley, New York, 1973. 19. Newman, M., Gillick, L., Ito, Y., McAllaster, D., and Peskin, B., Speaker verification through large vocabulary continuous speech recognition. In Proceedings of the International Conference on Spoken Language Processing, 1996, pp. 2419–2422.</li>
+<li>Reynolds, D. A., Rose, R. C., and Smith, M. J. T., PC-based TMS320C30 implementation of the Gaussian mixture model text-independent speaker recognition system. In Proceedings of the International Conference on Signal Processing Applications and Technology, November 1992, pp. 967–973.</li>
+<li>Soong, F. K. and Rosenberg, A. E., On the use of instantaneous and transitional spectral information in speaker recognition. In Proceedings of the International Conference on Acoustics, Speech, and Signal Processing, 1986, pp. 877–880.</li>
+<li>Reynolds, D. A., Experimental evaluation of features for robust speaker identification, IEEE Trans. Speech Audio Process. 2 (1994), 639–643.</li>
+<li>Hermansky, H., Morgan, N., Bayya, A., and Kohn, P., RASTA-PLP speech analysis technique. In Proceedings of the International Conference on Acoustics, Speech, and Signal Processing, March 1992, pp. I.121–I.124.</li>
+<li>Reynolds, D. A., The effects of handset variability on speaker recognition performance: Experiments on the switchboard corpus. In Proceedings of the International Conference on Acoustics, Speech, and Signal Processing, May 1996, pp. 113–116.</li>
+<li>Quatieri, T., Reynolds, D. A., and O’Leary, G., Magnitude-only estimation of handset nonlinearity with application to speaker recognition. In Proceedings of the International Conference on Acoustics, Speech, and Signal Processing, 1998, pp. 745–748.</li>
+<li>Isobe, T. and Takahashi, J., Text-independent speaker verification using virtual speaker based cohort normalization. In Proceedings of the European Conference on Speech Communication and Technology, 1999, pp. 987–990.</li>
+<li>Gauvain, J. L. and Lee, C.-H., Maximum a posteriori estimation for multivariate Gaussian mixture observations of Markov chains, IEEE Trans. Speech Audio Process. 2 (1994), 291–298. </li>
+<li>Vuuren, S., Speaker Verification in a Time-Feature Space. Ph.D. thesis, Oregon Graduate Institute, March 1999.</li>
+<li>Fukunaga,K., Introduction to Statistical Pattern Recognition. Academic Press, San Diego, 1972. </li>
+<li>Reynolds, D. A., Zissman, M., Quatieri, T. F., O’Leary, G., and Carlson, B., The effects of telephone transmission degradations on speaker recognition performance. In Proceedings of the International Conference on Acoustics, Speech, and Signal Processing, May 1995, pp. 329–332.</li>
+<li>Reynolds, D. A., HTIMIT and LLHDB: Speech corpora for the study of handset transducer<br>effects. In Proceedings of the International Conference on Acoustics, Speech, and Signal<br>Processing, April 1997, pp. 1535–1538.</li>
+<li>Linguistic Data Consortium (LDC), Philadelphia, PA. Website: www.ldc.upenn.edu.</li>
+<li>NIST speaker recognition evaluation plans, Philadelphia, PA. Website: www.nist.gov/speech/test.htm.</li>
+<li>Pryzbocki, M. and Martin, A., The 1999 NIST speaker recognition evaluation, using summed two-channel telephone data for speaker detection and speaker tracking. In Proceedings of the European Conference on Speech Communication and Technology, 1999, pp. 2215–2218.</li>
+<li>Martin, A., Doddington, G., Kamm, T., Ordowski, M., and Przybocki, M., The DET curve in assessment of detection task performance. In Proceedings of the European Conference on Speech Communication and Technology, 1997, pp. 1895–1898.</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/Automatic-Speech-Recognition/MFCC-feature-extraction/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -508,7 +737,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/Machine-Learning/Gaussian-Mixture-Model/">
+    <link itemprop="mainEntityOfPage" href="https://GeekOrangeLuyao.github.io/src/Machine-Learning-Theory/Gaussian-Mixture-Model/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="OrangeLuYao">
@@ -527,7 +756,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/src/Machine-Learning/Gaussian-Mixture-Model/" itemprop="url">Gaussian Mixture Model</a></h1>
+                <a class="post-title-link" href="/src/Machine-Learning-Theory/Gaussian-Mixture-Model/" itemprop="url">Gaussian Mixture Model</a></h1>
         
 
         <div class="post-meta">
@@ -562,8 +791,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
-                    <span itemprop="name">Machine Learning</span>
+                  <a href="/categories/Machine-Learning-Theory/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine Learning Theory</span>
                   </a>
                 </span>
 
@@ -997,7 +1226,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1008,7 +1237,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1019,7 +1248,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
